@@ -58,6 +58,10 @@ public class Pincers extends Subsystem {
         elevatorActuator1.set(DoubleSolenoid.Value.kForward);
         elevatorActuator2.set(DoubleSolenoid.Value.kForward);
     }
+    
+    public void testForwardLimitSwitchInput() {
+        System.out.println("Forward limit switch on: " + forwardLimitSwitch.get());
+    }
     public void lowerElevator(){
         elevatorActuator1.set(DoubleSolenoid.Value.kReverse);
         elevatorActuator2.set(DoubleSolenoid.Value.kReverse);
