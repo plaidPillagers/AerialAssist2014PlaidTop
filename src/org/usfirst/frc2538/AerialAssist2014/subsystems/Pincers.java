@@ -60,8 +60,8 @@ public class Pincers extends Subsystem {
     }
     
     public void testLimitSwitchesInput() {
-        //System.out.println("Forward limit switch on: " + forwardLimitSwitch.get());
-        //System.out.println("Aft limit switch on: " + aftLimitSwitch.get());
+        System.out.println("Forward limit switch on: " + forwardLimitSwitch.get());
+        System.out.println("Aft limit switch on: " + aftLimitSwitch.get());
     }
     public void lowerElevator(){
         elevatorActuator1.set(DoubleSolenoid.Value.kReverse);

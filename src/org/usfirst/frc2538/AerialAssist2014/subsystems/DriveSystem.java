@@ -41,10 +41,10 @@ public class DriveSystem extends Subsystem {
         if (n < 1000) {
             //System.out.println("Calling mecanum " + n);
         }
-        leftForeWheel.set(1);
-        leftAftWheel.set(1);
-        rightForeWheel.set(1);
-        rightAftWheel.set(1);
+        leftForeWheel.set(0.5);
+        leftAftWheel.set(0.5);
+        rightForeWheel.set(0.5);
+        rightAftWheel.set(0.5);
     }
     public void stop(){
         robotDrive41.mecanumDrive_Cartesian(0, 0, 0, 0);
