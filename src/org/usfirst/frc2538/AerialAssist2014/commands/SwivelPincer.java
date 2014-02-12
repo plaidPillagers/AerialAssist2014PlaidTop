@@ -27,6 +27,7 @@ public class  SwivelPincer extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.pincers.moveSwivelForward();
         Robot.pincers.testLimitSwitchesInput();
     }
     // Make this return true when this Command no longer needs to run execute()
