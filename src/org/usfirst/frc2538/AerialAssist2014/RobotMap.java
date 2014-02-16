@@ -23,7 +23,7 @@ public class RobotMap {
     public static SpeedController pincersSwivelMotor;
     public static DoubleSolenoid pincersArmActuator;
     public static DoubleSolenoid pincersElevatorActuator1;
-    public static DoubleSolenoid pincersElevatorActuator2;
+    //public static DoubleSolenoid pincersElevatorActuator2;
     public static DigitalInput pincersForwardLimitSwitch;
     public static DigitalInput pincersAftLimitSwitch;
     public static SpeedController plaidapultWinchMotor;
@@ -50,7 +50,7 @@ public class RobotMap {
         pincersElevatorActuator1 = new DoubleSolenoid(1, 3, 4);      
 	
         
-        pincersElevatorActuator2 = new DoubleSolenoid(2, 1, 2);      
+        //pincersElevatorActuator2 = new DoubleSolenoid(2, 1, 2);      
 	
         
         pincersForwardLimitSwitch = new DigitalInput(1, 1);

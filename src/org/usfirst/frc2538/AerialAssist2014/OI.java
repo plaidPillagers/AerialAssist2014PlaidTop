@@ -53,9 +53,9 @@ public class OI {
     public Joystick driveJoystick;
     public JoystickButton toggleArm;
     public JoystickButton pullInButton;
-    public JoystickButton closePincerButton;
+    //public JoystickButton closePincerButton;
     public JoystickButton openPincerButton;
-    public JoystickButton lowerElevatorButton;
+    //public JoystickButton lowerElevatorButton;
     public JoystickButton raiseElevatorButton;
     public JoystickButton firePlaidapultButton;
     public Joystick shooterJoystick;
@@ -67,14 +67,14 @@ public class OI {
         
         firePlaidapultButton = new JoystickButton(shooterJoystick, 1);
         firePlaidapultButton.whenPressed(new FirePlaidapult());
-        raiseElevatorButton = new JoystickButton(shooterJoystick, 11);
+        raiseElevatorButton = new JoystickButton(shooterJoystick, 4);
         raiseElevatorButton.whenPressed(new RaiseElevator());
-        lowerElevatorButton = new JoystickButton(shooterJoystick, 10);
-        lowerElevatorButton.whenPressed(new LowerElevator());
-        openPincerButton = new JoystickButton(shooterJoystick, 6);
+        //lowerElevatorButton = new JoystickButton(shooterJoystick, 6);
+        //lowerElevatorButton.whenPressed(new LowerElevator());
+        openPincerButton = new JoystickButton(shooterJoystick, 3);
         openPincerButton.whenPressed(new OpenPincer());
-        closePincerButton = new JoystickButton(shooterJoystick, 7);
-        closePincerButton.whenPressed(new ClosePincers());
+        //closePincerButton = new JoystickButton(shooterJoystick, 3);
+        //closePincerButton.whenPressed(new ClosePincers());
         pullInButton = new JoystickButton(shooterJoystick, 2);
         pullInButton.whileHeld(new PullInWinch());
         toggleArm = new JoystickButton(shooterJoystick, 1);

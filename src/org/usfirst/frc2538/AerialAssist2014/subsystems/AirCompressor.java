@@ -14,15 +14,20 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  *
  * @author Plaidtop
  */
-public class Compressor extends Subsystem{
-    private Compressor compressor;
+public class AirCompressor extends Subsystem{
+    private Compressor compressor = RobotMap.compressorCompressor;
     //Compressor compressor = RobotMap.compressorCompressor;
+    
+    public AirCompressor(){
+        super();
+        compressor.start();
+    }
     
     protected void initDefaultCommand() {
         
     }
-    public void startCompressor(){
-        compressor.startCompressor();
-    }
+    //public void startCompressor(){
+    //    compressor.startCompressor();
+    //}
     
 }

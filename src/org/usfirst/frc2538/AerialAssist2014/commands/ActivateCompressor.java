@@ -13,7 +13,7 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class ActivateCompressor extends Command{
     public void ActivateCompressor(){
-        requires(Robot.compressor);
+        requires(Robot.compressorSystem);
     }
 
     protected void initialize() {
@@ -21,7 +21,7 @@ public class ActivateCompressor extends Command{
     }
 
     protected void execute() {
-        Robot.compressor.startCompressor();
+        //Robot.compressorSystem.startCompressor();
     }
 
     protected boolean isFinished() {
