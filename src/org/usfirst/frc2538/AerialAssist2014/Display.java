@@ -53,6 +53,7 @@ public class Display {
         boolean aftSwitch = aftLimitSwitch.get();
         boolean winchSwitch = winchLimitSwitch.get();
         
+        
         int numberOfLines = 6;
         
         String[] lines = new String[numberOfLines];

@@ -76,7 +76,7 @@ public class OI {
         closePincerButton = new JoystickButton(shooterJoystick, 7);
         closePincerButton.whenPressed(new ClosePincers());
         pullInButton = new JoystickButton(shooterJoystick, 2);
-        pullInButton.whenPressed(new PullInWinch());
+        pullInButton.whileHeld(new PullInWinch());
         toggleArm = new JoystickButton(shooterJoystick, 1);
         toggleArm.whenPressed(new OpenPincer());
         driveJoystick = new Joystick(1);
