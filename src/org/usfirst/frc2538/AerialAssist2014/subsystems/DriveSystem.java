@@ -45,13 +45,13 @@ public class DriveSystem extends Subsystem {
         double throttleProportion = throttle*(-.25) +.75;
         robotDrive41.mecanumDrive_Polar(y * throttleProportion, x * throttleProportion, z);
         n++;
-        System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
-        System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
-        System.out.println("JOYSTICK Z = " + Robot.oi.driveJoystick.getZ());
-        System.out.println("FOR PORT  = " + leftForeWheel.get());
-        System.out.println("FOR STARBOARD = " + rightForeWheel.get());
-        System.out.println("AFT PORT = " + leftAftWheel.get());
-        System.out.println("AFT STARBOARD = " + rightAftWheel.get());
+        //System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
+        //System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
+        //System.out.println("JOYSTICK Z = " + Robot.oi.driveJoystick.getZ());
+        //System.out.println("FOR PORT  = " + leftForeWheel.get());
+        //System.out.println("FOR STARBOARD = " + rightForeWheel.get());
+        //System.out.println("AFT PORT = " + leftAftWheel.get());
+        //System.out.println("AFT STARBOARD = " + rightAftWheel.get());
         //System.out.println("throttle = " + Robot.oi.driveJoystick.getThrottle());
         if (n < 1000) {
             //System.out.println("Calling mecanum " + n);

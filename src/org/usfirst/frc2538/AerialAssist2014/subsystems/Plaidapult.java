@@ -62,6 +62,6 @@ public class Plaidapult extends Subsystem {
     public void displayDistance(){
         double voltage = rangeFinder.getAverageVoltage();
         double distanceInches = voltage/0.009766;
-        System.out.println("distance is" + distanceInches);
+        //System.out.println("distance is" + distanceInches);
     }
 }
