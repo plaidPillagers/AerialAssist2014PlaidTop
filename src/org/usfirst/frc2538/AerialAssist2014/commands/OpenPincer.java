@@ -24,6 +24,7 @@ public class  OpenPincer extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.pincers.armForward = !Robot.pincers.armForward;
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
