@@ -44,18 +44,22 @@ public class Plaidapult extends Subsystem {
     public void pullIn(){
         if(winchLimitSwitch.get()){
             winchMotor.set(WINCH_SPEED);
+            System.out.println("****PULLING IN WINCH******");
         }
         else{
             winchMotor.set(0);
             winchMaxLoadReached = true;
+            System.out.println("*************STOPPING WINCH*********");
         }
     }
     public void easeWinch(){
         if(getTime() < EASE_WINCH_TIME){
             winchMotor.set(-.75);
+            System.out.println("-------------EASE WINCH----------");
         }
         else{
             winchMotor.set(0);
+            System.out.println("--------------STOPPING WINCH=-----------");
         }
     }
     public void firePlaidapult(){

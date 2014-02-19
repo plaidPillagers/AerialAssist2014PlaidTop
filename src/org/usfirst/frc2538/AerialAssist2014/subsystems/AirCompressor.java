@@ -20,6 +20,9 @@ public class AirCompressor extends Subsystem{
     
     public AirCompressor(){
         super();
+    }
+    public void startCompressor(){
+        System.out.println("-----COMPRESSOR HAS STARTED--------");
         compressor.start();
     }
     
