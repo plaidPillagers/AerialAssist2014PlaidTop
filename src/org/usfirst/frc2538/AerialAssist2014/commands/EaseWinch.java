@@ -18,6 +18,7 @@ public class EaseWinch extends Command {
     }
 
     protected void initialize() {
+        Robot.plaidapult.startTiming();
     }
 
     protected void execute() {
