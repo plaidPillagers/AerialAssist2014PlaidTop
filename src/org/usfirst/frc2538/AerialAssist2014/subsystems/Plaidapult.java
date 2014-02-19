@@ -26,7 +26,7 @@ public class Plaidapult extends Subsystem {
     private final int WINCH_SPEED = 1;
     private final int TIME_45 = 1200;
     private long startTime = 0;
-    public boolean winchMaxLoad = true;
+    public boolean winchMaxLoadReached = true;
     public boolean triggerReleased = false;
     AnalogChannel rangeFinder = RobotMap.rangeFinder;
     
@@ -46,7 +46,7 @@ public class Plaidapult extends Subsystem {
         }
         else{
             winchMotor.set(0);
-            winchMaxLoad = true;
+            winchMaxLoadReached = true;
         }
     }
     public void easeWinch(){
@@ -61,13 +61,20 @@ public class Plaidapult extends Subsystem {
         }
     }
     public void winch45(){
-        if(getTime() < TIME_45){
+        if(getTime() < TIME_45 && winchLimitSwitch.get()){
             winchMotor.set(WINCH_SPEED);
         }
         else{
+            if (!winchLimitSwitch.get()){
+                winchMaxLoadReached = true;
+            }
             winchMotor.set(0.0);
         }
     }
+    public void stop(){
+        winchMotor.set(0);
+    }
+    
     public void displayPlaidapultData(){
         SmartDashboard.putBoolean("Winch Limit Switch Status", winchLimitSwitch.get());
         SmartDashboard.putString("Trigger Actuator Status", triggerActuator.getSmartDashboardType());

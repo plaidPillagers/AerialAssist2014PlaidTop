@@ -61,6 +61,9 @@ public class Pincers extends Subsystem {
             swivelMotor.set(0);
         }
     }
+    public void swivelStop(){
+        swivelMotor.set(0);
+    }
     public void toggleElevator(){
         if(elevatorRaise){
             elevatorActuator1.set(DoubleSolenoid.Value.kForward);
