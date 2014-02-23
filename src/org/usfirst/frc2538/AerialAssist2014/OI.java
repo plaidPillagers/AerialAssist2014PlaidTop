@@ -85,7 +85,7 @@ public class OI {
         
 	    
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        //SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveMecanum", new DriveMecanum());
         SmartDashboard.putData("OpenPincer", new OpenPincer());
         SmartDashboard.putData("PullInWinch", new PullInWinch());

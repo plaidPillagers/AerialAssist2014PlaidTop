@@ -5,9 +5,9 @@
  */
 
 package org.usfirst.frc2538.AerialAssist2014.subsystems;
+import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc2538.AerialAssist2014.RobotMap;
 import org.usfirst.frc2538.AerialAssist2014.commands.*;
-import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc2538.AerialAssist2014.Robot;
 /**
