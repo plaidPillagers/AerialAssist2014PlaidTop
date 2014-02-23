@@ -8,9 +8,10 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc2538.AerialAssist2014.subsystems;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SpeedController;
 import org.usfirst.frc2538.AerialAssist2014.RobotMap;
 import org.usfirst.frc2538.AerialAssist2014.commands.*;
-import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc2538.AerialAssist2014.Robot;
