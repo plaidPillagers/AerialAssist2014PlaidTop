@@ -29,6 +29,9 @@ public class Pincers extends Subsystem {
     public boolean armForward = false;
     public boolean elevatorRaise = false;
     public boolean pincerSwitchReset = false;
+    Joystick shooterJoystick = Robot.oi.shooterJoystick;
+    double throttle = shooterJoystick.getThrottle();
+    double throttleProportion = throttle * (-.25) + .75; 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -40,11 +43,12 @@ public class Pincers extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
     public void moveSwivelForward(){
         double y = Robot.oi.shooterJoystick.getY();
         if (forwardLimitSwitch.get()){
              //Attack Joystick is inverted, multiply values by -1
-            swivelMotor.set(y*(-1));
+            swivelMotor.set(throttleProportion * y*(-1));
             //System.out.println("SWIVEL MOTOR = " + swivelMotor.get());
         }
         else{
@@ -55,7 +59,7 @@ public class Pincers extends Subsystem {
         double y = Robot.oi.shooterJoystick.getY();
         if (aftLimitSwitch.get()){
             //Attack joystick is inverted, multiply values by -1
-            swivelMotor.set(y * (-1));
+            swivelMotor.set(throttleProportion * y * (-1));
             swivelMotor.set(0);
         }
         else{
@@ -64,11 +68,6 @@ public class Pincers extends Subsystem {
     }
     public void swivelStop(){
         swivelMotor.set(0);
-    }
-    public void resetPincerSwitches(){
-        if(pincerSwitchReset){
-            
-        }
     }
     
     public void toggleElevator(){

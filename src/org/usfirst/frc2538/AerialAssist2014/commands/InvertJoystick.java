@@ -15,7 +15,7 @@ public class InvertJoystick extends Command {
     }
 
     protected void initialize() {
-        
+        Robot.driveSystem.joystickInversion = -1;
     }
 
     protected void execute() {

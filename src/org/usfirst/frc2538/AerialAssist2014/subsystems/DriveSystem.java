@@ -54,8 +54,11 @@ public class DriveSystem extends Subsystem {
         Joystick driveJoystick = Robot.oi.driveJoystick;
         double throttle = driveJoystick.getThrottle();
         double throttleProportion = throttle*(-.25) +.75;
-        robotDrive41.mecanumDrive_Polar(joystickSaftey(y * joystickInversion) * throttleProportion, joystickSaftey(x * joystickInversion) * throttleProportion, z * joystickInversion);
-        n++;
+        robotDrive41.mecanumDrive_Polar(joystickSaftey(y * joystickInversion) * throttleProportion,
+                joystickSaftey(x * joystickInversion) * throttleProportion,
+                z * joystickInversion);
+        //n++;
+        System.out.println("@@@@@@@@@@@@@@@@@@     " + joystickInversion + "    @@@@@@@@@@@@@@@@@@@");
         System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
         System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
         System.out.println("JOYSTICK Z = " + Robot.oi.driveJoystick.getZ());
