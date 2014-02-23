@@ -58,13 +58,13 @@ public class Display {
         
         String[] lines = new String[numberOfLines];
         
-        lines[0] = "DriveJoystick: [" + formatDouble(driveX, 2) + "," + formatDouble(driveY,2) + "]";
+        lines[0] = "DJ:[" + formatDouble(driveX, 2) + "," + formatDouble(driveY,2) + "]";
         lines[1] = "[" + formatDouble(leftFore, 2) + "," + formatDouble(rightFore, 2) + "]";
         lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
-        lines[3] = "ShooterJoystick [" + formatDouble(shooterY, 2) + "]";
+        lines[3] = "SJ:[" + formatDouble(shooterY, 2) + "]";
         lines[4] = "Fore Switch: " + foreSwitch;
         lines[5] = "Aft Switch: " + aftSwitch;
-        //lines[6] = "Plaidapult Status:" + winchSwitch;
+        lines[6] = "PP Switch: " + winchSwitch;
         writeLCD(lines);
     }
     
