@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(){
-        this.addSequential(new PullInWinch());
-        this.addSequential(new OpenPincer());
+        //addParallel(null);
+        addSequential(new PullInWinch()); // stops at a limit switch
+        addSequential(new TogglePincers());
     }
 }
