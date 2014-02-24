@@ -27,8 +27,8 @@ public class  SwivelPincer extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.pincers.moveSwivelForward();
-        Robot.pincers.moveSwivelAft();
+        System.out.println("Moving pincers....");
+        Robot.pincers.moveSwivel();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
