@@ -31,6 +31,7 @@ public class DriveSystem extends Subsystem {
     public int joystickInversion = 1;
     final double JOYSTICK_SAFTEY = .03;
     public boolean joystickInverted = false;
+    public boolean getZ = false;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -50,8 +51,19 @@ public class DriveSystem extends Subsystem {
             return x;
         }
     }
+    public double getZ(){
+        Joystick driveJoystick = Robot.oi.driveJoystick;
+        double z = driveJoystick.getZ();
+        
+        if(getZ){
+            return z;
+        }
+        else{
+            return 0;
+        }
+    }
     
-    public void driveMecanum(double x, double y, double z){
+    public void driveMecanum(double magnitude, double direction){
         
         Joystick driveJoystick = Robot.oi.driveJoystick;
         double throttle = driveJoystick.getThrottle();
@@ -59,9 +71,9 @@ public class DriveSystem extends Subsystem {
         //robotDrive41.mecanumDrive_Polar(joystickSaftey(y * joystickInversion) * throttleProportion,
         //        joystickSaftey(x * joystickInversion) * throttleProportion,
         //        z * joystickInversion);
-        robotDrive41.mecanumDrive_Polar(driveJoystick.getMagnitude(),
-                driveJoystick.getDirectionDegrees(),
-                driveJoystick.getZ());
+        robotDrive41.mecanumDrive_Polar(joystickSaftey(magnitude)*throttleProportion,
+                direction,
+                getZ());
 //        System.out.println("@@@@@@@@@@@@@@@@@@     " + joystickInversion + "    @@@@@@@@@@@@@@@@@@@");
 //        //System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
 //        //System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
