@@ -56,14 +56,17 @@ public class DriveSystem extends Subsystem {
         Joystick driveJoystick = Robot.oi.driveJoystick;
         double throttle = driveJoystick.getThrottle();
         double throttleProportion = throttle*(-.25) +.75;
-        robotDrive41.mecanumDrive_Polar(joystickSaftey(y * joystickInversion) * throttleProportion,
-                joystickSaftey(x * joystickInversion) * throttleProportion,
-                z * joystickInversion);
-        //n++;
+        //robotDrive41.mecanumDrive_Polar(joystickSaftey(y * joystickInversion) * throttleProportion,
+        //        joystickSaftey(x * joystickInversion) * throttleProportion,
+        //        z * joystickInversion);
+        robotDrive41.mecanumDrive_Polar(driveJoystick.getMagnitude(),
+                driveJoystick.getDirectionDegrees(),
+                driveJoystick.getZ());
         System.out.println("@@@@@@@@@@@@@@@@@@     " + joystickInversion + "    @@@@@@@@@@@@@@@@@@@");
-        System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
-        System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
+        //System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
+        //System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
         System.out.println("JOYSTICK Z = " + Robot.oi.driveJoystick.getZ());
+        System.out.println("MAGNITUDE = " + driveJoystick.getMagnitude());
         System.out.println("FOR PORT  = " + leftForeWheel.get());
         System.out.println("FOR STARBOARD = " + rightForeWheel.get());
         System.out.println("AFT PORT = " + leftAftWheel.get());

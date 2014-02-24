@@ -48,7 +48,7 @@ public class Display {
         double rightAft = rightAftWheel.get();
         double driveX = driveJoystick.getX();
         double driveY = driveJoystick.getY();
-        double shooterY = driveJoystick.getY();
+        double shooterY = shooterJoystick.getY();
         boolean foreSwitch = forwardLimitSwitch.get();
         boolean aftSwitch = aftLimitSwitch.get();
         boolean winchSwitch = winchLimitSwitch.get();
@@ -64,7 +64,7 @@ public class Display {
         lines[3] = "SJ:[" + formatDouble(shooterY, 2) + "]";
         lines[4] = "Fore Switch: " + foreSwitch;
         lines[5] = "Aft Switch: " + aftSwitch;
-        lines[6] = "PP Switch: " + winchSwitch;
+        //lines[6] = "PP Switch: " + winchSwitch;
         writeLCD(lines);
     }
     
