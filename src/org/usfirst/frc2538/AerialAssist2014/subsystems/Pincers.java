@@ -91,11 +91,11 @@ public class Pincers extends Subsystem {
         double y = shooterJoystick.getY();
         
         if(y < 0 && okForward()){
-            swivelMotor.set(throttleProportion * y);
+            swivelMotor.set(throttleProportion * y *(-1));
             System.out.println("MOVING FORWARD");
         }
         else if(y > 0 && okAft()){
-            swivelMotor.set(throttleProportion * y);
+            swivelMotor.set(throttleProportion * y *(-1));
             System.out.println("MOVING AFT");
         }
         else{
