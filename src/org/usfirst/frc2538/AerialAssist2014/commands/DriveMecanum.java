@@ -29,11 +29,9 @@ public class  DriveMecanum extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute(){ 
             Joystick driveJoystick = Robot.oi.driveJoystick;
-            double x = driveJoystick.getX();           
-            double y = driveJoystick.getY();
-            double z = driveJoystick.getZ();
-            //System.out.println("Joystick x " + x + " y " + y + " z " + z);
-            Robot.driveSystem.driveMecanum(x,y,z);            
+            double magnitude = driveJoystick.getMagnitude();
+            double direction = driveJoystick.getDirectionDegrees();
+            Robot.driveSystem.driveMecanum(magnitude, direction);            
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
