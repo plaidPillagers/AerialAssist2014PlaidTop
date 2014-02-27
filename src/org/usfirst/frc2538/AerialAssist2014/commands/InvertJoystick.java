@@ -15,10 +15,12 @@ public class InvertJoystick extends Command {
     }
 
     protected void initialize() {
-        Robot.driveSystem.joystickInversion = -1;
+        Robot.driveSystem.joystickInverted = false;
+        Robot.driveSystem.joystickInversion = 1;
     }
 
     protected void execute() {
+        Robot.driveSystem.joystickInverted = true;
         Robot.driveSystem.joystickInversion = -1;
     }
 
@@ -27,10 +29,12 @@ public class InvertJoystick extends Command {
     }
 
     protected void end() {
+        Robot.driveSystem.joystickInverted = false;
         Robot.driveSystem.joystickInversion = 1;
     }
 
     protected void interrupted() {
+        Robot.driveSystem.joystickInverted = false;
         Robot.driveSystem.joystickInversion = 1;
     }
     
