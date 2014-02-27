@@ -11,17 +11,17 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class InvertJoystick extends Command {
     public InvertJoystick(){
-        requires(Robot.driveSystem);
+        //requires(Robot.driveSystem);
     }
 
     protected void initialize() {
-        System.out.println("joystick inversion initialized");
-        //Robot.driveSystem.joystickInverted = false;
-        //Robot.driveSystem.joystickInversion = 1;
+        //System.out.println("joystick inversion initialized");
+        Robot.driveSystem.joystickInverted = true;
+        Robot.driveSystem.joystickInversion = -1;
     }
 
     protected void execute() {
-        System.out.println("joystick inversion executing");
+        //System.out.println("joystick inversion executing");
         Robot.driveSystem.joystickInverted = true;
         Robot.driveSystem.joystickInversion = -1;
     }
@@ -31,11 +31,13 @@ public class InvertJoystick extends Command {
     }
 
     protected void end() {
+        //System.out.println("joystick inversion ENDING");
         Robot.driveSystem.joystickInverted = false;
         Robot.driveSystem.joystickInversion = 1;
     }
 
     protected void interrupted() {
+        //System.out.println("interrupted ");
         Robot.driveSystem.joystickInverted = false;
         Robot.driveSystem.joystickInversion = 1;
     }

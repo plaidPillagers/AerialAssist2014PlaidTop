@@ -57,7 +57,7 @@ public class DriveSystem extends Subsystem {
         double z = driveJoystick.getZ();
         
         if(getZ){
-            System.out.println("returning z = " + z);
+            //System.out.println("returning z = " + z);
             return z;
         }
         else{
@@ -67,13 +67,14 @@ public class DriveSystem extends Subsystem {
     public double invertDirection(double direction){
         double oppositeDirection = direction + 180;
         //System.out.println("ORIGINAL DIRECTION: " + direction);
+        //System.out.println("JOYSTICK INVERTED = " + joystickInverted);
         if(joystickInverted){
             if(oppositeDirection >= 360){
-                System.out.println("OPPOSITE DIRECTION OVER 360: " + (oppositeDirection -360));
+                //System.out.println("OPPOSITE DIRECTION OVER 360: " + (oppositeDirection -360));
                 return oppositeDirection - 360;
             }
             else{
-                System.out.println("OPPOSITE DIRECTION: " + oppositeDirection);
+                //System.out.println("OPPOSITE DIRECTION: " + oppositeDirection);
                 return oppositeDirection;
             }
         }

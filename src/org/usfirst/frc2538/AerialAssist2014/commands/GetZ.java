@@ -13,7 +13,7 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class GetZ extends Command {
     public GetZ(){
-        requires(Robot.driveSystem);
+        //requires(Robot.driveSystem);
     }
 
     protected void initialize() {
