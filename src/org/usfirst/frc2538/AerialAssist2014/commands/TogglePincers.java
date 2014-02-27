@@ -34,6 +34,7 @@ public class  TogglePincers extends Command {
     protected void execute() {
         hasExecuted = true;
         Robot.pincers.toggleArm();
+        System.out.println("Executing toggle pincers");
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
