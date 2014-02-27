@@ -62,6 +62,20 @@ public class DriveSystem extends Subsystem {
             return 0;
         }
     }
+    public double invertDirection(double direction){
+        double oppositeDirection = direction + 180;
+        if(joystickInverted){
+            if(oppositeDirection >= 360){
+                return oppositeDirection - 360;
+            }
+            else{
+                return oppositeDirection;
+            }
+        }
+        else{
+            return direction;
+        }
+    }
     
     public void driveMecanum(double magnitude, double direction){
         
@@ -72,8 +86,8 @@ public class DriveSystem extends Subsystem {
         //        joystickSaftey(x * joystickInversion) * throttleProportion,
         //        z * joystickInversion);
         robotDrive41.mecanumDrive_Polar(joystickSaftey(magnitude)*throttleProportion,
-                direction,
-                getZ());
+                invertDirection(direction),
+                getZ() * joystickInversion);
 //        System.out.println("@@@@@@@@@@@@@@@@@@     " + joystickInversion + "    @@@@@@@@@@@@@@@@@@@");
 //        //System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
 //        //System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
