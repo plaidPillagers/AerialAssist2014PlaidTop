@@ -15,11 +15,13 @@ public class InvertJoystick extends Command {
     }
 
     protected void initialize() {
-        Robot.driveSystem.joystickInverted = false;
-        Robot.driveSystem.joystickInversion = 1;
+        System.out.println("joystick inversion initialized");
+        //Robot.driveSystem.joystickInverted = false;
+        //Robot.driveSystem.joystickInversion = 1;
     }
 
     protected void execute() {
+        System.out.println("joystick inversion executing");
         Robot.driveSystem.joystickInverted = true;
         Robot.driveSystem.joystickInversion = -1;
     }

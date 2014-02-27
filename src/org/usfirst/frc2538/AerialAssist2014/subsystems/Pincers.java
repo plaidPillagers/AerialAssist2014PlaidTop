@@ -53,7 +53,7 @@ public class Pincers extends Subsystem {
     }
     
     public void moveSwivelForward(){
-        System.out.println("....forward...");
+        //System.out.println("....forward...");
         Joystick shooterJoystick = Robot.oi.shooterJoystick;
         double throttle = shooterJoystick.getThrottle();
         double throttleProportion = throttle * (-.25) + .75; 
@@ -69,7 +69,7 @@ public class Pincers extends Subsystem {
         }
     }
     public void moveSwivelAft(){
-        System.out.println("....and aft...");
+        //System.out.println("....and aft...");
         Joystick shooterJoystick = Robot.oi.shooterJoystick;
         double throttle = shooterJoystick.getThrottle();
         double throttleProportion = throttle * (-.25) + .75; 
@@ -92,15 +92,15 @@ public class Pincers extends Subsystem {
  
         if(y < 0 && okForward()){
             swivelMotor.set(throttleProportion * y *(-1));
-            System.out.println("MOVING FORWARD");
+            //System.out.println("MOVING FORWARD");
         }
         else if(y > 0 && okAft()){
             swivelMotor.set(throttleProportion * y *(-1));
-            System.out.println("MOVING AFT");
+            //System.out.println("MOVING AFT");
         }
         else{
             swivelMotor.set(0);
-            System.out.println("STOP MOVING!");
+            //System.out.println("STOP MOVING!");
         }
     }
     public void swivelStop(){

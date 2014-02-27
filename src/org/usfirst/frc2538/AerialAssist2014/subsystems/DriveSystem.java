@@ -32,6 +32,7 @@ public class DriveSystem extends Subsystem {
     final double JOYSTICK_SAFTEY = .03;
     public boolean joystickInverted = false;
     public boolean getZ = false;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -56,6 +57,7 @@ public class DriveSystem extends Subsystem {
         double z = driveJoystick.getZ();
         
         if(getZ){
+            System.out.println("returning z = " + z);
             return z;
         }
         else{
@@ -64,11 +66,14 @@ public class DriveSystem extends Subsystem {
     }
     public double invertDirection(double direction){
         double oppositeDirection = direction + 180;
+        //System.out.println("ORIGINAL DIRECTION: " + direction);
         if(joystickInverted){
             if(oppositeDirection >= 360){
+                System.out.println("OPPOSITE DIRECTION OVER 360: " + (oppositeDirection -360));
                 return oppositeDirection - 360;
             }
             else{
+                System.out.println("OPPOSITE DIRECTION: " + oppositeDirection);
                 return oppositeDirection;
             }
         }
