@@ -27,6 +27,7 @@ public class Display {
     static DigitalInput winchLimitSwitch;
     static Joystick driveJoystick;
     static Joystick shooterJoystick;
+    static DigitalInput pressureSwitch;
     
     public static void initializeDriverStation(){
         driverStation = DriverStationLCD.getInstance();
@@ -38,7 +39,8 @@ public class Display {
         aftLimitSwitch = RobotMap.pincersAftLimitSwitch;
         winchLimitSwitch = RobotMap.plaidapultWinchLimitSwitch;
         driveJoystick = Robot.oi.driveJoystick;
-        shooterJoystick = Robot.oi.shooterJoystick;       
+        shooterJoystick = Robot.oi.shooterJoystick; 
+        //pressureSwitch = RobotMap.pressureSwitch;
     }
     
     public static void driverStationDisplay(){
@@ -50,8 +52,9 @@ public class Display {
         double driveY = driveJoystick.getY();
         double shooterY = shooterJoystick.getY();
         boolean foreSwitch = forwardLimitSwitch.get();
-        boolean aftSwitch = aftLimitSwitch.get();
+        //boolean aftSwitch = aftLimitSwitch.get();
         boolean winchSwitch = winchLimitSwitch.get();
+        //boolean compressorSwitch = pressureSwitch.get();
         
         
         int numberOfLines = 6;
@@ -63,8 +66,9 @@ public class Display {
         lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
         lines[3] = "SJ:[" + formatDouble(shooterY, 2) + "]";
         lines[4] = "Fore Switch: " + foreSwitch;
-        lines[5] = "Aft Switch: " + aftSwitch;
-        //lines[6] = "PP Switch: " + winchSwitch;
+        //lines[5] = "Aft Switch: " + aftSwitch; should be here
+        //lines[5] = "PP Switch: " + winchSwitch;
+        //lines[5] = "C Switch: " + compressorSwitch;
         writeLCD(lines);
     }
     

@@ -89,7 +89,7 @@ public class Pincers extends Subsystem {
         double throttle = shooterJoystick.getThrottle();
         double throttleProportion = throttle * (-.25) + .75;
         double y = shooterJoystick.getY();
-        
+ 
         if(y < 0 && okForward()){
             swivelMotor.set(throttleProportion * y *(-1));
             System.out.println("MOVING FORWARD");
