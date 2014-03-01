@@ -107,6 +107,15 @@ public class DriveSystem extends Subsystem {
 //        System.out.println("throttle = " + Robot.oi.driveJoystick.getThrottle());
 
     }
+    public void autoDrive(){
+        if(Robot.plaidapult.displayDistance() > Robot.plaidapult.MIN_SHOOTING_DISTANCE 
+                && Robot.plaidapult.displayDistance() < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
+            stop();
+        }
+        else{
+            robotDrive41.mecanumDrive_Polar(0,.75,0);
+        }
+    }
     public void stop(){
         robotDrive41.mecanumDrive_Polar(0, 0, 0);
     }

@@ -15,8 +15,24 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(){
         System.out.println("Started autonomous");
+        boolean hotGoalTracking = true;
         //addParallel(null);
-        addSequential(new AutoPullInWinch()); // stops at a limit switch
-        addSequential(new AutoTogglePincers());
+        if(hotGoalTracking){
+            addSequential(new AutoPullInWinch()); // stops at a limit switch
+            addSequential(new AutoDrive());
+            addSequential(new AutoTogglePincers());
+            addSequential(new AutoFirePlaidapult());
+        }
+        else{
+            addSequential(new AutoPullInWinch());
+            addSequential(new AutoDrive());
+            addSequential(new AutoTogglePincers());
+            addSequential(new AutoFirePlaidapult());
+            addSequential(new AutoMoveSwivelForward());
+            addSequential(new AutoTogglePincers());
+            addSequential(new AutoMoveSwivelAft());
+            addSequential(new AutoTogglePincers());
+            addSequential(new AutoFirePlaidapult());
+        }
     }
 }

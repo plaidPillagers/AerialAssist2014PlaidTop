@@ -32,6 +32,7 @@ public class Pincers extends Subsystem {
     public boolean armForward = false;
     public boolean elevatorRaise = false;
     public boolean pincerSwitchReset = false;
+    public static final double SWIVEL_SPEED = .75;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -54,14 +55,14 @@ public class Pincers extends Subsystem {
     
     public void moveSwivelForward(){
         //System.out.println("....forward...");
-        Joystick shooterJoystick = Robot.oi.shooterJoystick;
-        double throttle = shooterJoystick.getThrottle();
-        double throttleProportion = throttle * (-.25) + .75; 
+        //Joystick shooterJoystick = Robot.oi.shooterJoystick;
+        //double throttle = shooterJoystick.getThrottle();
+        //double throttleProportion = throttle * (-.25) + .75; 
     
-        double y = Robot.oi.shooterJoystick.getY();
+        //double y = Robot.oi.shooterJoystick.getY();
         if (okForward()){
              //Attack Joystick is inverted, multiply values by -1
-            swivelMotor.set(throttleProportion * y*(-1));
+            swivelMotor.set(SWIVEL_SPEED * (-1));
             //System.out.println("SWIVEL MOTOR = " + swivelMotor.get());
         }
         else{
@@ -70,15 +71,14 @@ public class Pincers extends Subsystem {
     }
     public void moveSwivelAft(){
         //System.out.println("....and aft...");
-        Joystick shooterJoystick = Robot.oi.shooterJoystick;
-        double throttle = shooterJoystick.getThrottle();
-        double throttleProportion = throttle * (-.25) + .75; 
+        //Joystick shooterJoystick = Robot.oi.shooterJoystick;
+        //double throttle = shooterJoystick.getThrottle();
+        //double throttleProportion = throttle * (-.25) + .75; 
         
-        double y = Robot.oi.shooterJoystick.getY();
+        //double y = Robot.oi.shooterJoystick.getY();
         if (okAft()){
             //Attack joystick is inverted, multiply values by -1
-            swivelMotor.set(throttleProportion * y * (-1));
-            swivelMotor.set(0);
+            swivelMotor.set(SWIVEL_SPEED * (-1));
         }
         else{
             swivelMotor.set(0);
