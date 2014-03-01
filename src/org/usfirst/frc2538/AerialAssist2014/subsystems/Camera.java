@@ -192,7 +192,7 @@ public class Camera extends Subsystem {
         return 0;
     }
     private boolean boxDistance(ParticleAnalysisReport[] reports){
-        for(int i = 0; i < reports.length; i++){
+        for(int i = 1; i < reports.length; i++){
             double objOneX = reports[i-1].center_mass_x - (reports[i-1].imageWidth/2);
             double objOneY = reports[i-1].center_mass_y - (reports[i-1].imageHeight/2);
             double objTwoX = reports[i].center_mass_x - (reports[i].imageWidth/2);
