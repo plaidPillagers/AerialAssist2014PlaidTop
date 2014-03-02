@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.image.*;
+import edu.wpi.first.wpilibj.networktables2.util.List;
 import java.util.Vector;
 /**
  *
@@ -143,15 +144,16 @@ public class Camera extends Subsystem {
         return null;
     }
     
-    private int checkOffset(ParticleAnalysisReport[] reports){
+    private Vector checkOffset(ParticleAnalysisReport[] reports){
         int objectCenterX;
+        Vector reportsPostOffset = null;
         
         if(rightSide){
             for(int i=0; i < reports.length; i++){
                 objectCenterX = reports[i].center_mass_x;
                 
                 if(objectCenterX > RIGHT_SIDE_OFFSET){
-                    return 1;
+                    reportsPostOffset.addElement(reports[i]);
                 }
                 else{
                     continue;
@@ -161,7 +163,7 @@ public class Camera extends Subsystem {
         else{
             
         }
-        return 0;
+        return null;
     }
     private int checkProportion(ParticleAnalysisReport[] reports){
         int objectHeight;

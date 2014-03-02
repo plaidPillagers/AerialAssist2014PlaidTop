@@ -28,6 +28,7 @@ public class AutonomousCommand extends CommandGroup {
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());
             addSequential(new AutoFirePlaidapult());
+            addParallel(new PullInWinch());
             addSequential(new AutoMoveSwivelForward());
             addSequential(new AutoTogglePincers());
             addSequential(new AutoMoveSwivelAft());
