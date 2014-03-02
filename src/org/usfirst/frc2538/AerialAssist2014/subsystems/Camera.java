@@ -144,6 +144,19 @@ public class Camera extends Subsystem {
         
         return null;
     }
+    public ParticleAnalysisReport[] generateReports(){
+        try {
+            Vector images = getImages();
+            BinaryImage binaryImage = (BinaryImage) images.elementAt(2);
+            ParticleAnalysisReport[] allReports = binaryImage.getOrderedParticleAnalysisReports();
+            return allReports;
+        } catch (NIVisionException ex) {
+            ex.printStackTrace();
+        } catch (AxisCameraException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
     
     private Vector checkOffset(ParticleAnalysisReport[] reports){
         int objectCenterX;
