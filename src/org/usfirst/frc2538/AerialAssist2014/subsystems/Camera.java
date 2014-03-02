@@ -23,6 +23,7 @@ public class Camera extends Subsystem {
     private AxisCamera camera;
     private boolean rightSide;
     private double RIGHT_SIDE_OFFSET;
+    private double LEFT_SIDE_OFFSET;
     private final double RECTANGLE_PROPORTION = .2;
     private double MIN_DISTANCE;
     // Put methods for controlling this subsystem
@@ -161,14 +162,25 @@ public class Camera extends Subsystem {
             }
         }
         else{
+            for(int i = 0; i < reports.length; i++){
+                objectCenterX = reports[i].center_mass_x;
+                
+                if(objectCenterX < LEFT_SIDE_OFFSET ){
+                    reportsPostOffset.addElement(reports[i]);
+                }
+                else{
+                    continue;
+                }
+            }
             
         }
         return null;
     }
-    private int checkProportion(ParticleAnalysisReport[] reports){
+    private List checkProportion(ParticleAnalysisReport[] reports){
         int objectHeight;
         int objectWidth;
         int boxProportion;
+        List postProportion = null;
         
         for(int i = 0; i < reports.length; i++){
             objectHeight = reports[i].boundingRectHeight;
@@ -181,17 +193,17 @@ public class Camera extends Subsystem {
                 boxProportion = objectHeight/objectWidth;
             }
             else{
-                return 0;
+                return null;
             }
             
             if(boxProportion < RECTANGLE_PROPORTION){
-                
+                postProportion.add(reports[i]);
             }
             else{
-                
+                postProportion.add(reports[i]);
             }
         }
-        return 0;
+        return postProportion;
     }
     private boolean boxDistance(ParticleAnalysisReport[] reports){
         for(int i = 1; i < reports.length; i++){
@@ -208,6 +220,6 @@ public class Camera extends Subsystem {
                 return !toShoot();
             }
        }
-       return !toShoot();
+       return false;
     }
 }
