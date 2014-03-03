@@ -17,7 +17,6 @@ public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(){
         System.out.println("Started autonomous");
         boolean hotGoalTracking = true;
-        double WAIT;
         //addParallel(null);
         if(hotGoalTracking){
             addParallel(new AutoCamera());
@@ -28,7 +27,7 @@ public class AutonomousCommand extends CommandGroup {
                 addSequential(new AutoFirePlaidapult());
             }
             else{
-                //add timing for firePlaidapult
+                addSequential(new AutoDelayedFirePlaidapult());
             }
         }
         else{

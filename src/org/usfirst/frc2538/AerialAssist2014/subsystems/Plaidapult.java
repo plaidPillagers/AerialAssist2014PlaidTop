@@ -30,6 +30,7 @@ public class Plaidapult extends Subsystem {
     private final int WINCH_SPEED = 1;
     private final long TIME_45 = 1200;
     private final long EASE_WINCH_TIME = 3000;
+    public final long FIVE_SECOND = 5000;
     public final long MIN_SHOOTING_DISTANCE = 600;
     public final long MAX_SHOOTING_DISTANCE = 800;
     private long startTime = 0;
