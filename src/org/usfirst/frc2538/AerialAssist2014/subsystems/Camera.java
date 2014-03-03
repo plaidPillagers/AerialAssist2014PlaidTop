@@ -46,7 +46,7 @@ public class Camera extends Subsystem {
         return true; 
     } 
     
-     private Vector getImages() throws NIVisionException, AxisCameraException {
+    public Vector getImages() throws NIVisionException, AxisCameraException {
         ColorImage image = null;
         BinaryImage binaryImage = null;
         BinaryImage binaryNoSmallObj = null;
@@ -121,29 +121,29 @@ public class Camera extends Subsystem {
         }
         System.out.println();
     }
-    private ParticleAnalysisReport SortSides(BinaryImage binaryImage){
-        try{
-            ParticleAnalysisReport[] allReports = binaryImage.getOrderedParticleAnalysisReports();
-            int objectCenterX;
-            int element = 0;
-            objectCenterX = allReports[element].center_mass_x;
-            
-            for(int i = 0; i < RIGHT_SIDE_OFFSET; i++){
-                
-            }
-            if(objectCenterX < RIGHT_SIDE_OFFSET){
-                objectCenterX = allReports[element++].center_mass_x;
-            }
-            else{
-                return allReports[element];
-            }
-        }
-        catch(NIVisionException ex){
-            
-        }
-        
-        return null;
-    }
+    //private ParticleAnalysisReport SortSides(BinaryImage binaryImage){
+    //    try{
+    //        ParticleAnalysisReport[] allReports = binaryImage.getOrderedParticleAnalysisReports();
+    //        int objectCenterX;
+    //        int element = 0;
+    //        objectCenterX = allReports[element].center_mass_x;
+    //        
+    //        for(int i = 0; i < RIGHT_SIDE_OFFSET; i++){
+    //            
+    //        }
+    //        if(objectCenterX < RIGHT_SIDE_OFFSET){
+    //            objectCenterX = allReports[element++].center_mass_x;
+    //        }
+    //        else{
+    //            return allReports[element];
+    //        }
+    //    }
+    //    catch(NIVisionException ex){
+    //        
+    //    }
+    //    
+    //    return null;
+    //}
     public ParticleAnalysisReport[] generateReports(){
         try {
             Vector images = getImages();
@@ -158,9 +158,9 @@ public class Camera extends Subsystem {
         return null;
     }
     
-    private Vector checkOffset(ParticleAnalysisReport[] reports){
+    public Vector checkOffset(ParticleAnalysisReport[] reports){
         int objectCenterX;
-        Vector reportsPostOffset = null;
+        Vector reportsPostOffset = new Vector();
         
         if(rightSide){
             for(int i=0; i < reports.length; i++){
@@ -189,15 +189,16 @@ public class Camera extends Subsystem {
         }
         return null;
     }
-    private List checkProportion(ParticleAnalysisReport[] reports){
+    public Vector checkProportion(Vector reports){
         int objectHeight;
         int objectWidth;
         int boxProportion;
-        List postProportion = null;
+        Vector postProportion = new Vector();
         
-        for(int i = 0; i < reports.length; i++){
-            objectHeight = reports[i].boundingRectHeight;
-            objectWidth = reports[i].boundingRectWidth;
+        for(int i = 0; i < reports.size(); i++){
+            ParticleAnalysisReport report = (ParticleAnalysisReport) reports.elementAt(i);
+            objectHeight = report.boundingRectHeight;
+            objectWidth = report.boundingRectWidth;
             
             if(objectHeight > objectWidth){
                 boxProportion =  objectWidth/objectHeight;
@@ -210,20 +211,24 @@ public class Camera extends Subsystem {
             }
             
             if(boxProportion < RECTANGLE_PROPORTION){
-                postProportion.add(reports[i]);
+                postProportion.addElement(report);
             }
             else{
-                postProportion.add(reports[i]);
+                postProportion.addElement(report);
             }
         }
         return postProportion;
     }
-    private boolean boxDistance(ParticleAnalysisReport[] reports){
-        for(int i = 1; i < reports.length; i++){
-            double objOneX = reports[i-1].center_mass_x - (reports[i-1].imageWidth/2);
-            double objOneY = reports[i-1].center_mass_y - (reports[i-1].imageHeight/2);
-            double objTwoX = reports[i].center_mass_x - (reports[i].imageWidth/2);
-            double objTwoY = reports[i].center_mass_y - (reports[i].imageHeight/2);
+    public boolean boxDistance(Vector reports){
+        
+        for(int i = 1; i < reports.size(); i++){
+            ParticleAnalysisReport biggerReport = (ParticleAnalysisReport) reports.elementAt(i - 1);
+            ParticleAnalysisReport report = (ParticleAnalysisReport) reports.elementAt(i);
+            
+            double objOneX = biggerReport.center_mass_x - (biggerReport.imageWidth/2);
+            double objOneY = biggerReport.center_mass_y - (biggerReport.imageHeight/2);
+            double objTwoX = report.center_mass_x - (report.imageWidth/2);
+            double objTwoY = report.center_mass_y - (report.imageHeight/2);
             double distance = Math.sqrt(((objOneX - objTwoY)*(objOneX - objOneY)) + ((objOneY - objTwoY)*(objOneY - objTwoY)));
            
             if(distance > MIN_DISTANCE){
