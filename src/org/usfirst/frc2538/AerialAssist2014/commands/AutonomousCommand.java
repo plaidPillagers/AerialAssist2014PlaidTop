@@ -7,6 +7,7 @@
 package org.usfirst.frc2538.AerialAssist2014.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc2538.AerialAssist2014.Robot;
 
 /**
  *
@@ -16,12 +17,19 @@ public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(){
         System.out.println("Started autonomous");
         boolean hotGoalTracking = true;
+        double WAIT;
         //addParallel(null);
         if(hotGoalTracking){
+            addParallel(new AutoCamera());
             addSequential(new AutoPullInWinch()); // stops at a limit switch
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());
-            addSequential(new AutoFirePlaidapult());
+            if(Robot.camera.toShoot()){
+                addSequential(new AutoFirePlaidapult());
+            }
+            else{
+                //add timing for firePlaidapult
+            }
         }
         else{
             addSequential(new AutoPullInWinch());

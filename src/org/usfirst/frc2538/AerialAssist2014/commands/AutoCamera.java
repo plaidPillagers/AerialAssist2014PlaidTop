@@ -26,6 +26,7 @@ public class AutoCamera extends Command {
         final Vector checkOffset = Robot.camera.checkOffset(generateReports);
         final Vector checkProportion = Robot.camera.checkProportion(checkOffset);
         final boolean boxDistance = Robot.camera.boxDistance(checkProportion);
+        
         hasExecuted = true;
     }
 
