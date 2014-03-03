@@ -68,6 +68,12 @@ public class Display {
         lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
         lines[3] = "SJ:[" + formatDouble(shooterY, 2) + "]";
         lines[4] = "Fore Switch: " + foreSwitch;
+        if(rangeFinder > Robot.plaidapult.MIN_SHOOTING_DISTANCE && rangeFinder < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
+            lines[5] = "RF: *IN RANGE*";
+        }
+        else{
+            lines[5] = "RF: " + rangeFinder;
+        }
         //lines[5] = "Aft Switch: " + aftSwitch; //should be here
         //lines[5] = "PP Switch: " + winchSwitch;
         //lines[5] = "C Switch: " + compressorSwitch;
