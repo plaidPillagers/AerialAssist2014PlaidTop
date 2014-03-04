@@ -239,15 +239,7 @@ public class Camera extends Subsystem {
         if(tall.size() == 0 && wide.size() == 1){
             return SHOOT; 
         }
-        
-//            else if(onlyReport.boundingRectHeight / onlyReport.boundingRectWidth < RECTANGLE_PROPORTION){
-//                return SHOOT; 
-//            }
-//            else{
-//                return NO_IMAGE;
-//            }
-        
-        
+
         for(int i = 0; i < wide.size(); i++){
             ParticleAnalysisReport wideReport = (ParticleAnalysisReport) wide.elementAt(i);
             

@@ -19,7 +19,6 @@ public class AutonomousCommand extends CommandGroup {
         boolean hotGoalTracking = true;
         //addParallel(null);
         if(hotGoalTracking){
-            addParallel(new AutoCamera());
             addSequential(new AutoPullInWinch()); // stops at a limit switch
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());

@@ -12,20 +12,38 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  * @author lenny
  */
 public class AutoDelayedFirePlaidapult extends Command {
-    private boolean hasExecuted;
+    private boolean hasExecuted = false;
+    private boolean delayedExecution = false;
+    private int numImageAttempts = 0;
+    private final int MAX_ATTEMPTS = 3;
     
     protected void initialize() {
         Robot.plaidapult.startTiming();
-        hasExecuted = false;
     }
 
     protected void execute() {
-        if(Robot.plaidapult.getTime() > Robot.plaidapult.FIVE_SECOND){
-            Robot.plaidapult.firePlaidapult();
-            hasExecuted = true;
-        }
-        else{
-            hasExecuted = false;
+        if (!hasExecuted){
+            if(numImageAttempts > MAX_ATTEMPTS || delayedExecution == true){
+                if(Robot.plaidapult.getTime() > Robot.plaidapult.FIVE_SECOND){
+                    Robot.plaidapult.firePlaidapult();
+                    Robot.plaidapult.startTiming();
+                    hasExecuted = true;
+                }
+            } 
+            else {
+                int toShoot = Robot.camera.toShoot();
+                if(toShoot == Robot.camera.SHOOT){
+                    Robot.plaidapult.firePlaidapult();
+                    Robot.plaidapult.startTiming();
+                    hasExecuted = true;
+                }
+                else if(toShoot == Robot.camera.NO_IMAGE){
+                    numImageAttempts++;
+                }
+                else{
+                    delayedExecution = true;
+                }
+            }
         }
     }
 
@@ -34,12 +52,10 @@ public class AutoDelayedFirePlaidapult extends Command {
     }
 
     protected void end() {
-        hasExecuted = false;
         
     }
 
     protected void interrupted() {
-        hasExecuted = false;
     }
     
 }
