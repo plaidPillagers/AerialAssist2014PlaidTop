@@ -160,6 +160,9 @@ public class Camera extends Subsystem {
     public Vector checkOffset(ParticleAnalysisReport[] reports){
         int objectCenterX;
         Vector reportsPostOffset = new Vector();
+        if (reports.length == 0) {
+            return reportsPostOffset;
+        }
         int largeArea = reports[0].imageHeight * reports[0].imageWidth/100;
         // takes the area of the entire image on the first particle report
         

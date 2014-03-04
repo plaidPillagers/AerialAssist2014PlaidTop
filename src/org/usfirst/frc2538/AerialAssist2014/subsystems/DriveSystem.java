@@ -110,10 +110,13 @@ public class DriveSystem extends Subsystem {
     public void autoDrive(){
         if(Robot.plaidapult.displayDistance() > Robot.plaidapult.MIN_SHOOTING_DISTANCE 
                 && Robot.plaidapult.displayDistance() < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
+            System.out.println("NOT MOVING");
             stop();
         }
         else{
-            robotDrive41.mecanumDrive_Polar(0,.75,0);
+            robotDrive41.mecanumDrive_Polar(0.75,0,0);
+            System.out.println("MOVING FORWARD");
+                    
         }
     }
     public void stop(){
