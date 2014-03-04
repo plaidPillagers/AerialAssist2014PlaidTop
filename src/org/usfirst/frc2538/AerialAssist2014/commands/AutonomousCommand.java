@@ -19,16 +19,12 @@ public class AutonomousCommand extends CommandGroup {
         boolean hotGoalTracking = true;
         //addParallel(null);
         if(hotGoalTracking){
-            addSequential(new AutoPullInWinch()); // stops at a limit switch
-            addSequential(new AutoDrive());
+            addParallel(new AutoPullInWinch()); // stops at a limit switch
+            addSequential(new AutoDrive(), 3);
             addSequential(new AutoTogglePincers());
-            if(Robot.camera.toShoot() == Robot.camera.SHOOT){
-                addSequential(new AutoFirePlaidapult());
-            }
-            else{
-                addSequential(new AutoDelayedFirePlaidapult());
-            }
+            addSequential(new AutoDelayedFirePlaidapult());         
         }
+        
         else{
             addSequential(new AutoPullInWinch());
             addSequential(new AutoDrive());
