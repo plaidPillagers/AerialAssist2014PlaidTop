@@ -23,7 +23,7 @@ public class AutonomousCommand extends CommandGroup {
             addSequential(new AutoPullInWinch()); // stops at a limit switch
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());
-            if(Robot.camera.toShoot()){
+            if(Robot.camera.toShoot() == Robot.camera.SHOOT){
                 addSequential(new AutoFirePlaidapult());
             }
             else{

@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.image.*;
-import edu.wpi.first.wpilibj.networktables2.util.List;
 import java.util.Vector;
 /**
  *
@@ -26,6 +25,9 @@ public class Camera extends Subsystem {
     private double LEFT_SIDE_OFFSET;
     private final double RECTANGLE_PROPORTION = .2;
     private double MIN_DISTANCE;
+    public final int SHOOT = 1;
+    public final int DONT_SHOOT = -1;
+    public final int NO_IMAGE = 0;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public Camera(){
@@ -41,10 +43,6 @@ public class Camera extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
-    public boolean toShoot(){
-        return true; 
-    } 
     
     public Vector getImages() throws NIVisionException, AxisCameraException {
         ColorImage image = null;
@@ -149,6 +147,7 @@ public class Camera extends Subsystem {
             Vector images = getImages();
             BinaryImage binaryImage = (BinaryImage) images.elementAt(2);
             ParticleAnalysisReport[] allReports = binaryImage.getOrderedParticleAnalysisReports();
+            free(images);
             return allReports;
         } catch (NIVisionException ex) {
             ex.printStackTrace();
@@ -166,11 +165,10 @@ public class Camera extends Subsystem {
             for(int i=0; i < reports.length; i++){
                 objectCenterX = reports[i].center_mass_x;
                 
+                
+                
                 if(objectCenterX > RIGHT_SIDE_OFFSET){
                     reportsPostOffset.addElement(reports[i]);
-                }
-                else{
-                    continue;
                 }
             }
         }
@@ -181,13 +179,10 @@ public class Camera extends Subsystem {
                 if(objectCenterX < LEFT_SIDE_OFFSET ){
                     reportsPostOffset.addElement(reports[i]);
                 }
-                else{
-                    continue;
-                }
             }
             
         }
-        return null;
+        return reportsPostOffset;
     }
     public Vector checkProportion(Vector reports){
         int objectHeight;
@@ -219,8 +214,11 @@ public class Camera extends Subsystem {
         }
         return postProportion;
     }
-    public boolean boxDistance(Vector reports){
-        
+    
+    public int toShoot (){
+        final ParticleAnalysisReport[] generatedReports = generateReports();
+        final Vector checkedOffset = checkOffset(generatedReports);
+        final Vector reports = checkProportion(checkedOffset);
         for(int i = 1; i < reports.size(); i++){
             ParticleAnalysisReport biggerReport = (ParticleAnalysisReport) reports.elementAt(i - 1);
             ParticleAnalysisReport report = (ParticleAnalysisReport) reports.elementAt(i);
@@ -232,12 +230,12 @@ public class Camera extends Subsystem {
             double distance = Math.sqrt(((objOneX - objTwoY)*(objOneX - objOneY)) + ((objOneY - objTwoY)*(objOneY - objTwoY)));
            
             if(distance > MIN_DISTANCE){
-                return toShoot();
+                return SHOOT;
             }
             else{
-                return !toShoot();
+                return DONT_SHOOT;
             }
        }
-       return false;
+       return NO_IMAGE;
     }
 }
