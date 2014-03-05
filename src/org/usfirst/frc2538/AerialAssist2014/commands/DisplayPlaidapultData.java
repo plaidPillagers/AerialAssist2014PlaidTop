@@ -13,7 +13,7 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class DisplayPlaidapultData extends Command{
     public DisplayPlaidapultData(){
-        requires(Robot.plaidapult);
+        //requires(Robot.plaidapult);
     }
     
     protected void initialize() {

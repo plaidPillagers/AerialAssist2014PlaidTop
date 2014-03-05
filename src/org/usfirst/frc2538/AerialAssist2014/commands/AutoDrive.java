@@ -15,6 +15,7 @@ public class AutoDrive extends Command{
     
     protected void initialize() {
         Robot.driveSystem.stop();
+        Robot.driveSystem.autoDriveDone = false;
     }
 
     protected void execute() {
@@ -26,9 +27,13 @@ public class AutoDrive extends Command{
     }
 
     protected void end() {
+        Robot.driveSystem.autoDriveDone = true;
+        System.out.println("ENDED");
     }
 
     protected void interrupted() {
+        Robot.driveSystem.autoDriveDone = true;
+        System.out.println("INTERRUPTED");
     }
     
 }

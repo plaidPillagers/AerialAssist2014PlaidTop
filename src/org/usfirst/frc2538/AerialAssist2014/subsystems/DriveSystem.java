@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc2538.AerialAssist2014.subsystems;
-import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -33,6 +32,8 @@ public class DriveSystem extends Subsystem {
     final double JOYSTICK_SAFTEY = .03;
     public boolean joystickInverted = false;
     public boolean getZ = false;
+    private double autoSpeed = 0.75;
+    public boolean autoDriveDone = false;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -85,16 +86,17 @@ public class DriveSystem extends Subsystem {
     }
     
     public void driveMecanum(double magnitude, double direction){
-        
-        Joystick driveJoystick = Robot.oi.driveJoystick;
-        double throttle = driveJoystick.getThrottle();
-        double throttleProportion = throttle*(-.25) +.75;
+        if (autoDriveDone) {
+            Joystick driveJoystick = Robot.oi.driveJoystick;
+            double throttle = driveJoystick.getThrottle();
+            double throttleProportion = throttle * (-.25) + .75;
         //robotDrive41.mecanumDrive_Polar(joystickSaftey(y * joystickInversion) * throttleProportion,
-        //        joystickSaftey(x * joystickInversion) * throttleProportion,
-        //        z * joystickInversion);
-        robotDrive41.mecanumDrive_Polar(joystickSaftey(magnitude)*throttleProportion,
-                invertDirection(direction),
-                getZ() * joystickInversion);
+            //        joystickSaftey(x * joystickInversion) * throttleProportion,
+            //        z * joystickInversion);
+            robotDrive41.mecanumDrive_Polar(joystickSaftey(magnitude) * throttleProportion,
+                    invertDirection(direction),
+                    getZ() * joystickInversion);
+        }
 //        System.out.println("@@@@@@@@@@@@@@@@@@     " + joystickInversion + "    @@@@@@@@@@@@@@@@@@@");
 //        //System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
 //        //System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
@@ -107,16 +109,21 @@ public class DriveSystem extends Subsystem {
 //        System.out.println("throttle = " + Robot.oi.driveJoystick.getThrottle());
 
     }
-    public void autoDrive(){
-        if(Robot.plaidapult.displayDistance() > Robot.plaidapult.MIN_SHOOTING_DISTANCE 
-                && Robot.plaidapult.displayDistance() < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
-            System.out.println("NOT MOVING");
-            stop();
-        }
-        else{
-            robotDrive41.mecanumDrive_Polar(0.75,0,0);
-            System.out.println("MOVING FORWARD");
-                    
+    public void autoDrive() {
+        if (!autoDriveDone) {
+            if (Robot.plaidapult.displayDistance() < Robot.plaidapult.MAX_SHOOTING_DISTANCE) {
+                System.out.println("NOT MOVING");
+                stop();
+            } else {
+                //robotDrive41.mecanumDrive_Polar(0.75,0,0);
+                double autoSpeed = 0.75;
+                rightAftWheel.set(autoSpeed);
+                leftAftWheel.set(autoSpeed);
+                rightForeWheel.set(autoSpeed);
+                leftForeWheel.set(autoSpeed);
+                System.out.println("MOVING FORWARD ======================= ");
+
+            }
         }
     }
     public void stop(){

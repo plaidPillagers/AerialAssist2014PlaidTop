@@ -14,7 +14,7 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class DisplayPincerData extends Command{
     public DisplayPincerData(){
-        requires(Robot.pincers);
+        //requires(Robot.pincers);
     }
    
     protected void initialize() {

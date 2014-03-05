@@ -27,7 +27,8 @@ public class  DriveMecanum extends Command {
     protected void initialize() {
     }
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(){ 
+    protected void execute(){
+            //System.out.println("Driving mecanum by joysticks");
             Joystick driveJoystick = Robot.oi.driveJoystick;
             double magnitude = driveJoystick.getMagnitude();
             double direction = driveJoystick.getDirectionDegrees();
@@ -39,6 +40,7 @@ public class  DriveMecanum extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("Stopping mecanum.....");
         Robot.driveSystem.stop();
     }
     // Called when another command which requires one or more of the same

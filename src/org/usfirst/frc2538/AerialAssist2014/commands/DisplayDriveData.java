@@ -14,7 +14,7 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class DisplayDriveData extends Command{
     public DisplayDriveData(){
-        requires(Robot.driveSystem);
+        //requires(Robot.driveSystem);
     }
     
     protected void initialize() {

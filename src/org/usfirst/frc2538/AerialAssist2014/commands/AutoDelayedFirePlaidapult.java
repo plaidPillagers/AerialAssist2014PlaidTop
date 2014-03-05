@@ -15,10 +15,12 @@ public class AutoDelayedFirePlaidapult extends Command {
     private boolean hasExecuted = false;
     private boolean delayedExecution = false;
     private int numImageAttempts = 0;
-    private final int MAX_ATTEMPTS = 3;
+    private final int MAX_ATTEMPTS = 5;
     
     protected void initialize() {
         hasExecuted = false;
+        numImageAttempts = 0;
+        System.out.println("Started timing");
         Robot.plaidapult.startTiming();
     }
 
@@ -29,7 +31,7 @@ public class AutoDelayedFirePlaidapult extends Command {
                     Robot.plaidapult.firePlaidapult();
                     Robot.plaidapult.startTiming();
                     hasExecuted = true;
-                    System.out.println("SHOOTING DELAYED");
+                    System.out.println("DELAYED SHOT");
                 }
             } 
             else {
@@ -55,10 +57,11 @@ public class AutoDelayedFirePlaidapult extends Command {
     }
 
     protected void end() {
-        
+          System.out.println("&&&&&&&&&&&&&&&&&&& ended");
     }
 
     protected void interrupted() {
+        System.out.println("&&&&&&&&&&&&&&&&&&&& interrupted");
     }
     
 }

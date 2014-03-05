@@ -6,6 +6,7 @@
 
 package org.usfirst.frc2538.AerialAssist2014;
 
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -28,7 +29,7 @@ public class Display {
     static Joystick driveJoystick;
     static Joystick shooterJoystick;
     static DigitalInput pressureSwitch;
-    static double rangeFinder;
+    static AnalogChannel rangeFinder;
     
     public static void initializeDriverStation(){
         driverStation = DriverStationLCD.getInstance();
@@ -41,7 +42,7 @@ public class Display {
         winchLimitSwitch = RobotMap.plaidapultWinchLimitSwitch;
         driveJoystick = Robot.oi.driveJoystick;
         shooterJoystick = Robot.oi.shooterJoystick; 
-        rangeFinder = Robot.plaidapult.displayDistance();
+        rangeFinder = RobotMap.rangeFinder;
         //pressureSwitch = RobotMap.pressureSwitch;
     }
     
@@ -56,6 +57,7 @@ public class Display {
         boolean foreSwitch = forwardLimitSwitch.get();
         boolean aftSwitch = aftLimitSwitch.get();
         boolean winchSwitch = winchLimitSwitch.get();
+        double distance = rangeFinder.getAverageVoltage()/0.009766;
         //boolean compressorSwitch = pressureSwitch.get();
         
         
@@ -68,12 +70,13 @@ public class Display {
         lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
         lines[3] = "SJ:[" + formatDouble(shooterY, 2) + "]";
         lines[4] = "Fore Switch: " + foreSwitch;
-        if(rangeFinder > Robot.plaidapult.MIN_SHOOTING_DISTANCE && rangeFinder < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
+        if(distance > Robot.plaidapult.MIN_SHOOTING_DISTANCE && distance < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
             lines[5] = "RF: *IN RANGE*";
         }
         else{
-            lines[5] = "RF: " + rangeFinder;
+            lines[5] = "RF: " + distance;
         }
+        System.out.println("DISPLAY RANGE FINDER = " + rangeFinder);
         //lines[5] = "Aft Switch: " + aftSwitch; //should be here
         //lines[5] = "PP Switch: " + winchSwitch;
         //lines[5] = "C Switch: " + compressorSwitch;
