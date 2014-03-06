@@ -23,6 +23,7 @@ public class EaseWinch extends Command {
 
     protected void execute() {
         Robot.plaidapult.easeWinch();
+        System.out.println(" **********easing winch************");
     }
 
     protected boolean isFinished() {

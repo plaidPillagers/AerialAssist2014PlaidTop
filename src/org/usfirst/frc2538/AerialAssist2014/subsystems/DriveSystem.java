@@ -32,7 +32,7 @@ public class DriveSystem extends Subsystem {
     final double JOYSTICK_SAFTEY = .03;
     public boolean joystickInverted = false;
     public boolean getZ = false;
-    private double autoSpeed = 0.75;
+    private final double AUTO_DRIVE_SPEED = 0.75;
     public boolean autoDriveDone = false;
     
     // Put methods for controlling this subsystem
@@ -116,11 +116,10 @@ public class DriveSystem extends Subsystem {
                 stop();
             } else {
                 //robotDrive41.mecanumDrive_Polar(0.75,0,0);
-                double autoSpeed = 0.75;
-                rightAftWheel.set(autoSpeed);
-                leftAftWheel.set(autoSpeed);
-                rightForeWheel.set(autoSpeed);
-                leftForeWheel.set(autoSpeed);
+                rightAftWheel.set(AUTO_DRIVE_SPEED);
+                leftAftWheel.set(AUTO_DRIVE_SPEED);
+                rightForeWheel.set(AUTO_DRIVE_SPEED);
+                leftForeWheel.set(AUTO_DRIVE_SPEED);
                 System.out.println("MOVING FORWARD ======================= ");
 
             }

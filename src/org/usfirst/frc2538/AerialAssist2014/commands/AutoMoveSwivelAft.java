@@ -17,10 +17,11 @@ public class AutoMoveSwivelAft extends Command{
     protected void initialize() {
         Robot.pincers.swivelStop();
         hasExecuted = false;
+        Robot.pincers.autoMoveSwivelDone = false;
     }
 
     protected void execute() {
-        Robot.pincers.moveSwivelAft();
+        Robot.pincers.autoMoveSwivelAft();
         hasExecuted = true;
     }
 
@@ -31,11 +32,14 @@ public class AutoMoveSwivelAft extends Command{
     protected void end() {
         Robot.pincers.swivelStop();
         hasExecuted = true;
+        Robot.pincers.autoMoveSwivelDone = true;
     }
 
     protected void interrupted() {
         Robot.pincers.swivelStop();
         hasExecuted = true;
+        Robot.pincers.autoMoveSwivelDone = true;
+            
     }
     
 }

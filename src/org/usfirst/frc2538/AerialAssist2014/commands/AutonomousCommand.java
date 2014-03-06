@@ -15,13 +15,12 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  */
 public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(){
-        System.out.println("Started autonomous");
         boolean hotGoalTracking = true;
         //addParallel(null);
         if(hotGoalTracking){
-            addParallel(new AutoPullInWinch()); // stops at a limit switch
+            //addParallel(new AutoPullInWinch()); // stops at a limit switch
             //System.out.println("************** Start driving ****************");
-            addSequential(new AutoDrive(), 3);
+            //addSequential(new AutoDrive(), 3);
             //System.out.println("************** Stop driving, start pincers ****************");
             addSequential(new AutoTogglePincers());
             //System.out.println("************** Start plaidapult ****************");
@@ -29,7 +28,7 @@ public class AutonomousCommand extends CommandGroup {
         }
         
         else{
-            addSequential(new AutoPullInWinch());
+            addParallel(new AutoPullInWinch());
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());
             addSequential(new AutoFirePlaidapult());

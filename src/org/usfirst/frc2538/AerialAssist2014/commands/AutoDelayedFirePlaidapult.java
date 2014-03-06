@@ -27,7 +27,7 @@ public class AutoDelayedFirePlaidapult extends Command {
     protected void execute() {
         if (!hasExecuted){
             if(numImageAttempts > MAX_ATTEMPTS || delayedExecution == true){
-                if(Robot.plaidapult.getTime() > Robot.plaidapult.FIVE_SECOND){
+                if(Robot.plaidapult.getTime() > Robot.plaidapult.FIVE_SECOND_DELAY){
                     Robot.plaidapult.firePlaidapult();
                     Robot.plaidapult.startTiming();
                     hasExecuted = true;

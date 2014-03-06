@@ -30,6 +30,7 @@ public class Display {
     static Joystick shooterJoystick;
     static DigitalInput pressureSwitch;
     static AnalogChannel rangeFinder;
+    static Joystick getZ;
     
     public static void initializeDriverStation(){
         driverStation = DriverStationLCD.getInstance();
@@ -43,6 +44,7 @@ public class Display {
         driveJoystick = Robot.oi.driveJoystick;
         shooterJoystick = Robot.oi.shooterJoystick; 
         rangeFinder = RobotMap.rangeFinder;
+        getZ = Robot.oi.driveJoystick;
         //pressureSwitch = RobotMap.pressureSwitch;
     }
     
@@ -58,6 +60,7 @@ public class Display {
         boolean aftSwitch = aftLimitSwitch.get();
         boolean winchSwitch = winchLimitSwitch.get();
         double distance = rangeFinder.getAverageVoltage()/0.009766;
+        double driveZ = getZ.getZ();
         //boolean compressorSwitch = pressureSwitch.get();
         
         
@@ -65,18 +68,20 @@ public class Display {
         
         String[] lines = new String[numberOfLines];
         
-        lines[0] = "DJ:[" + formatDouble(driveX, 2) + "," + formatDouble(driveY,2) + "]";
-        lines[1] = "[" + formatDouble(leftFore, 2) + "," + formatDouble(rightFore, 2) + "]";
-        lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
-        lines[3] = "SJ:[" + formatDouble(shooterY, 2) + "]";
-        lines[4] = "Fore Switch: " + foreSwitch;
+        lines[0] = "DJ[" + formatDouble(driveX, 2) + "," + formatDouble(driveY,2) + "," + formatDouble(driveZ, 2) + "]";
+        //lines[1] = "[" + formatDouble(leftFore, 2) + "," + formatDouble(rightFore, 2) + "]";
+        //lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
+        lines[1] = "SJ:[" + formatDouble(shooterY, 2) + "]";
+        lines[2] = "Fore Switch: " + foreSwitch;
+        lines[3] = "Aft Switch: " + aftSwitch;
+        lines[4] = "PP switch: " + winchSwitch;
         if(distance > Robot.plaidapult.MIN_SHOOTING_DISTANCE && distance < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
             lines[5] = "RF: *IN RANGE*";
         }
         else{
             lines[5] = "RF: " + distance;
         }
-        System.out.println("DISPLAY RANGE FINDER = " + rangeFinder);
+        //System.out.println("DISPLAY RANGE FINDER = " + rangeFinder);
         //lines[5] = "Aft Switch: " + aftSwitch; //should be here
         //lines[5] = "PP Switch: " + winchSwitch;
         //lines[5] = "C Switch: " + compressorSwitch;

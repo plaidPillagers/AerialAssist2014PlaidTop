@@ -81,6 +81,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        Display.driverStationDisplay();
     }
     public void teleopInit() {
         //Robot.compressorSystem.startCompressor();
@@ -89,6 +90,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Robot.driveSystem.autoDriveDone = true;
+        Robot.pincers.autoMoveSwivelDone = true;
     }
     /**
      * This function is called periodically during operator control

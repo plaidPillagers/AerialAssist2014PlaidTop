@@ -32,7 +32,8 @@ public class  DriveMecanum extends Command {
             Joystick driveJoystick = Robot.oi.driveJoystick;
             double magnitude = driveJoystick.getMagnitude();
             double direction = driveJoystick.getDirectionDegrees();
-            Robot.driveSystem.driveMecanum(magnitude, direction);            
+            Robot.driveSystem.driveMecanum(magnitude, direction); 
+            //System.out.println("AUTO DRIVE DONE = " + Robot.driveSystem.autoDriveDone);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
