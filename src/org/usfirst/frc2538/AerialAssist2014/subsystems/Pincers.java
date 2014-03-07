@@ -51,11 +51,13 @@ public class Pincers extends Subsystem {
     }
 
     public boolean okForward() {
-        return forwardLimitSwitch.get();
+        System.out.println("forward switch = " + forwardLimitSwitch.get());
+        return !forwardLimitSwitch.get();
     }
 
     public boolean okAft() {
-        return aftLimitSwitch.get();
+        System.out.println("aft switch = " + aftLimitSwitch.get());
+        return !aftLimitSwitch.get();
     }
 
     public void autoMoveSwivelForward() {

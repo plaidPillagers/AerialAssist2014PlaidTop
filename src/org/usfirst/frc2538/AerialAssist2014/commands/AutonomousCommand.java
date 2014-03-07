@@ -18,9 +18,9 @@ public class AutonomousCommand extends CommandGroup {
         boolean hotGoalTracking = true;
         //addParallel(null);
         if(hotGoalTracking){
-            //addParallel(new AutoPullInWinch()); // stops at a limit switch
+            addSequential(new AutoPullInWinch()); // stops at a limit switch
             //System.out.println("************** Start driving ****************");
-            //addSequential(new AutoDrive(), 3);
+            addSequential(new AutoDrive(), 2);
             //System.out.println("************** Stop driving, start pincers ****************");
             addSequential(new AutoTogglePincers());
             //System.out.println("************** Start plaidapult ****************");
@@ -28,11 +28,11 @@ public class AutonomousCommand extends CommandGroup {
         }
         
         else{
-            addParallel(new AutoPullInWinch());
+            addSequential(new AutoPullInWinch());
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());
             addSequential(new AutoFirePlaidapult());
-            addParallel(new PullInWinch());
+            addSequential(new PullInWinch());
             addSequential(new AutoMoveSwivelForward());
             addSequential(new AutoTogglePincers());
             addSequential(new AutoMoveSwivelAft());

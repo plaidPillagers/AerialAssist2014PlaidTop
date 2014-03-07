@@ -21,15 +21,15 @@ public class AutoDelayedFirePlaidapult extends Command {
         hasExecuted = false;
         numImageAttempts = 0;
         System.out.println("Started timing");
-        Robot.plaidapult.startTiming();
+        Robot.plaidapult.resetTiming();
     }
 
     protected void execute() {
         if (!hasExecuted){
             if(numImageAttempts > MAX_ATTEMPTS || delayedExecution == true){
-                if(Robot.plaidapult.getTime() > Robot.plaidapult.FIVE_SECOND_DELAY){
+                if(Robot.plaidapult.getTime() > Robot.plaidapult.THREE_SECOND_DELAY){
                     Robot.plaidapult.firePlaidapult();
-                    Robot.plaidapult.startTiming();
+                    Robot.plaidapult.resetTiming();
                     hasExecuted = true;
                     System.out.println("DELAYED SHOT");
                 }
@@ -38,7 +38,7 @@ public class AutoDelayedFirePlaidapult extends Command {
                 int toShoot = Robot.camera.toShoot();
                 if(toShoot == Robot.camera.SHOOT){
                     Robot.plaidapult.firePlaidapult();
-                    Robot.plaidapult.startTiming();
+                    Robot.plaidapult.resetTiming();
                     hasExecuted = true;
                     System.out.println("HOT GOAL SHOOTING");
                 }

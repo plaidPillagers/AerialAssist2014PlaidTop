@@ -15,6 +15,7 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  * @author Plaidtop
  */
 public class AirCompressor extends Subsystem{
+    public boolean compressorOn = false;
     private Compressor compressor = RobotMap.compressorCompressor;
     //Compressor compressor = RobotMap.compressorCompressor;
     
@@ -22,8 +23,11 @@ public class AirCompressor extends Subsystem{
         super();
     }
     public void startCompressor(){
-        System.out.println("-----COMPRESSOR HAS STARTED--------");
-        compressor.start();
+        if (!compressorOn) {
+            System.out.println("-----COMPRESSOR HAS STARTED--------");
+            compressor.start();
+            compressorOn = true;
+        }
     }
     
     protected void initDefaultCommand() {

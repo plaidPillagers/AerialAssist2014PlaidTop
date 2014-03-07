@@ -32,7 +32,7 @@ public class DriveSystem extends Subsystem {
     final double JOYSTICK_SAFTEY = .03;
     public boolean joystickInverted = false;
     public boolean getZ = false;
-    private final double AUTO_DRIVE_SPEED = 0.75;
+    private final double AUTO_DRIVE_SPEED = 0.5;
     public boolean autoDriveDone = false;
     
     // Put methods for controlling this subsystem
@@ -87,6 +87,8 @@ public class DriveSystem extends Subsystem {
     
     public void driveMecanum(double magnitude, double direction){
         if (autoDriveDone) {
+            System.out.println(" driving mecanum");
+            System.out.println("Joystic inversion: " + joystickInversion);
             Joystick driveJoystick = Robot.oi.driveJoystick;
             double throttle = driveJoystick.getThrottle();
             double throttleProportion = throttle * (-.25) + .75;
@@ -127,6 +129,7 @@ public class DriveSystem extends Subsystem {
     }
     public void stop(){
         robotDrive41.mecanumDrive_Polar(0, 0, 0);
+        System.out.println("stopping mecanum");
     }
     public void displayDriveData(){
         SmartDashboard.putNumber("Port Fore Wheel", leftForeWheel.get());
