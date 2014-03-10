@@ -231,61 +231,62 @@ public class Camera extends Subsystem {
     }
     
     public int toShoot (){
-        final ParticleAnalysisReport[] generatedReports = generateReports();
-        final Vector checkedOffset = checkOffset(generatedReports);
-        final Vector[] tallAndWide = checkProportion(checkedOffset);
-        final Vector tall = tallAndWide[0];
-        final Vector wide = tallAndWide[1];
-        
-        System.out.println("We have " + tall.size() + " tall objects");
-        System.out.println("We have " + wide.size() + " wide objects");
-        
-        if(tall.size() == 0 && wide.size() == 0){
-            return NO_IMAGE;
-        }
-        
-        if(tall.size() == 1 && wide.size() == 0){
-            return DONT_SHOOT;
-        }
-        
-        if(tall.size() == 0 && wide.size() == 1){
-            return SHOOT; 
-        }
-
-        for(int i = 0; i < wide.size(); i++){
-            ParticleAnalysisReport wideReport = (ParticleAnalysisReport) wide.elementAt(i);
-            
-            if (rightSide) {
-                double wideX = wideReport.center_mass_x - (wideReport.boundingRectWidth / 2);
-                double wideY = wideReport.center_mass_y + (wideReport.boundingRectHeight / 2);
-
-                for (int j = 0; j < tall.size(); j++) {
-                    ParticleAnalysisReport tallReport = (ParticleAnalysisReport) tall.elementAt(j);
-                    double tallX = tallReport.center_mass_x + (tallReport.boundingRectWidth / 2);
-                    double tallY = tallReport.center_mass_y - (tallReport.boundingRectHeight / 2);
-                    double distance = Math.sqrt(((tallX - wideX) * (tallX - wideX))
-                            + ((tallY - wideY) * (tallY - wideY)));
-                    if (distance < MIN_DISTANCE) {
-                        return SHOOT;
-                    }
-                }
-            }
-            else{
-                double wideX = wideReport.center_mass_x + (wideReport.boundingRectWidth / 2);
-                double wideY = wideReport.center_mass_y + (wideReport.boundingRectHeight / 2);
-
-                for (int j = 0; j < tall.size(); j++) {
-                    ParticleAnalysisReport tallReport = (ParticleAnalysisReport) tall.elementAt(j);
-                    double tallX = tallReport.center_mass_x - (tallReport.boundingRectWidth / 2);
-                    double tallY = tallReport.center_mass_y - (tallReport.boundingRectHeight / 2);
-                    double distance = Math.sqrt(((tallX - wideX) * (tallX - wideX))
-                            + ((tallY - wideY) * (tallY - wideY)));
-                    if (distance < MIN_DISTANCE) {
-                        return SHOOT;
-                    }
-                }
-            }
-       }
-       return DONT_SHOOT;
+//        final ParticleAnalysisReport[] generatedReports = generateReports();
+//        final Vector checkedOffset = checkOffset(generatedReports);
+//        final Vector[] tallAndWide = checkProportion(checkedOffset);
+//        final Vector tall = tallAndWide[0];
+//        final Vector wide = tallAndWide[1];
+//        
+//        System.out.println("We have " + tall.size() + " tall objects");
+//        System.out.println("We have " + wide.size() + " wide objects");
+//        
+//        if(tall.size() == 0 && wide.size() == 0){
+//            return NO_IMAGE;
+//        }
+//        
+//        if(tall.size() == 1 && wide.size() == 0){
+//            return DONT_SHOOT;
+//        }
+//        
+//        if(tall.size() == 0 && wide.size() == 1){
+//            return SHOOT; 
+//        }
+//
+//        for(int i = 0; i < wide.size(); i++){
+//            ParticleAnalysisReport wideReport = (ParticleAnalysisReport) wide.elementAt(i);
+//            
+//            if (rightSide) {
+//                double wideX = wideReport.center_mass_x - (wideReport.boundingRectWidth / 2);
+//                double wideY = wideReport.center_mass_y + (wideReport.boundingRectHeight / 2);
+//
+//                for (int j = 0; j < tall.size(); j++) {
+//                    ParticleAnalysisReport tallReport = (ParticleAnalysisReport) tall.elementAt(j);
+//                    double tallX = tallReport.center_mass_x + (tallReport.boundingRectWidth / 2);
+//                    double tallY = tallReport.center_mass_y - (tallReport.boundingRectHeight / 2);
+//                    double distance = Math.sqrt(((tallX - wideX) * (tallX - wideX))
+//                            + ((tallY - wideY) * (tallY - wideY)));
+//                    if (distance < MIN_DISTANCE) {
+//                        return SHOOT;
+//                    }
+//                }
+//            }
+//            else{
+//                double wideX = wideReport.center_mass_x + (wideReport.boundingRectWidth / 2);
+//                double wideY = wideReport.center_mass_y + (wideReport.boundingRectHeight / 2);
+//
+//                for (int j = 0; j < tall.size(); j++) {
+//                    ParticleAnalysisReport tallReport = (ParticleAnalysisReport) tall.elementAt(j);
+//                    double tallX = tallReport.center_mass_x - (tallReport.boundingRectWidth / 2);
+//                    double tallY = tallReport.center_mass_y - (tallReport.boundingRectHeight / 2);
+//                    double distance = Math.sqrt(((tallX - wideX) * (tallX - wideX))
+//                            + ((tallY - wideY) * (tallY - wideY)));
+//                    if (distance < MIN_DISTANCE) {
+//                        return SHOOT;
+//                    }
+//                }
+//            }
+//       }
+       //return DONT_SHOOT;
+        return SHOOT;
     }
 }

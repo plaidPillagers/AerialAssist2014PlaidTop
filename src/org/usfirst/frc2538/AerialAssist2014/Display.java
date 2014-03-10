@@ -9,7 +9,6 @@ package org.usfirst.frc2538.AerialAssist2014;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStationLCD;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 
@@ -31,6 +30,7 @@ public class Display {
     static DigitalInput pressureSwitch;
     static AnalogChannel rangeFinder;
     static Joystick getZ;
+    static String trigger;
     
     public static void initializeDriverStation(){
         driverStation = DriverStationLCD.getInstance();
@@ -45,6 +45,7 @@ public class Display {
         shooterJoystick = Robot.oi.shooterJoystick; 
         rangeFinder = RobotMap.rangeFinder;
         getZ = Robot.oi.driveJoystick;
+        trigger = Robot.plaidapult.displayTriggerState();
         //pressureSwitch = RobotMap.pressureSwitch;
     }
     
@@ -61,6 +62,7 @@ public class Display {
         boolean winchSwitch = winchLimitSwitch.get();
         double distance = rangeFinder.getAverageVoltage()/0.009766;
         double driveZ = getZ.getZ();
+        String triggerStatus = Robot.plaidapult.displayTriggerState();
         //boolean compressorSwitch = pressureSwitch.get();
         
         
@@ -71,10 +73,12 @@ public class Display {
         lines[0] = "DJ[" + formatDouble(driveX, 2) + "," + formatDouble(driveY,2) + "," + formatDouble(driveZ, 2) + "]";
         //lines[1] = "[" + formatDouble(leftFore, 2) + "," + formatDouble(rightFore, 2) + "]";
         //lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
-        lines[1] = "SJ:[" + formatDouble(shooterY, 2) + "]";
-        lines[2] = "Fore Switch: " + foreSwitch;
-        lines[3] = "Aft Switch: " + aftSwitch;
-        lines[4] = "PP switch: " + winchSwitch;
+        //lines[1] = "SJ:[" + formatDouble(shooterY, 2) + "]";
+        lines[1] = "Fore Switch: " + foreSwitch;
+        lines[2] = "Aft Switch: " + aftSwitch;
+        //lines[4] = "Trigger" + triggerStatus;
+        lines[3] = "PP switch: " + winchSwitch;
+        lines[4] = "TriggerState: " + triggerStatus;
         if(distance > Robot.plaidapult.MIN_SHOOTING_DISTANCE && distance < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
             lines[5] = "RF: *IN RANGE*";
         }

@@ -25,6 +25,7 @@ public class AirCompressor extends Subsystem{
     public void startCompressor(){
         if (!compressorOn) {
             System.out.println("-----COMPRESSOR HAS STARTED--------");
+            System.out.println(compressor.getPressureSwitchValue());
             compressor.start();
             compressorOn = true;
         }

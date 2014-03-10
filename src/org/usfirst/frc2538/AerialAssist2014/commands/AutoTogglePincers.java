@@ -19,8 +19,9 @@ public class AutoTogglePincers extends Command {
     private boolean hasExecuted;
 
     protected void initialize() {
+        Robot.pincers.closeArm();
         hasExecuted = false;
-        Robot.pincers.armForward = !Robot.pincers.armForward;
+        //Robot.pincers.armForward = !Robot.pincers.armForward;
     }
 
     protected void execute() {
@@ -34,6 +35,7 @@ public class AutoTogglePincers extends Command {
     }
 
     protected void end() {
+        hasExecuted = true;
     }
 
     protected void interrupted() {

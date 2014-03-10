@@ -4,6 +4,7 @@
  */
 package org.usfirst.frc2538.AerialAssist2014.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2538.AerialAssist2014.Robot;
 
@@ -21,7 +22,7 @@ public class AutoFirePlaidapult extends Command {
 
     protected void execute() {
         Robot.plaidapult.firePlaidapult();
-        hasFinished = true;
+        System.out.println("**********Firing Plaidapult*********");
     }
 
     protected boolean isFinished() {
@@ -33,6 +34,7 @@ public class AutoFirePlaidapult extends Command {
     }
 
     protected void interrupted() {
+        hasFinished = true;
     }
     
 }

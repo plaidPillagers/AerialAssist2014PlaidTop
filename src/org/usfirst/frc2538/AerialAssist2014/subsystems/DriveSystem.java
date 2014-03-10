@@ -87,8 +87,8 @@ public class DriveSystem extends Subsystem {
     
     public void driveMecanum(double magnitude, double direction){
         if (autoDriveDone) {
-            System.out.println(" driving mecanum");
-            System.out.println("Joystic inversion: " + joystickInversion);
+            //System.out.println(" driving mecanum");
+            //System.out.println("Joystic inversion: " + joystickInversion);
             Joystick driveJoystick = Robot.oi.driveJoystick;
             double throttle = driveJoystick.getThrottle();
             double throttleProportion = throttle * (-.25) + .75;
@@ -98,23 +98,25 @@ public class DriveSystem extends Subsystem {
             robotDrive41.mecanumDrive_Polar(joystickSaftey(magnitude) * throttleProportion,
                     invertDirection(direction),
                     getZ() * joystickInversion);
+            //System.out.println("&&&&&&&&&&&&magnitude: " +joystickSaftey(magnitude) * throttleProportion * 12);
+            //System.out.println("$$$$$$$$$$$$$$$$$$direction" + invertDirection(direction));
         }
 //        System.out.println("@@@@@@@@@@@@@@@@@@     " + joystickInversion + "    @@@@@@@@@@@@@@@@@@@");
 //        //System.out.println("JOYSTICK Y = " + Robot.oi.driveJoystick.getY());
 //        //System.out.println("JOYSTICK X = " + Robot.oi.driveJoystick.getX());
 //        System.out.println("JOYSTICK Z = " + Robot.oi.driveJoystick.getZ());
 //        System.out.println("MAGNITUDE = " + driveJoystick.getMagnitude());
-//        System.out.println("FOR PORT  = " + leftForeWheel.get());
-//        System.out.println("FOR STARBOARD = " + rightForeWheel.get());
-//        System.out.println("AFT PORT = " + leftAftWheel.get());
-//        System.out.println("AFT STARBOARD = " + rightAftWheel.get());
+        System.out.println("FOR PORT  = " + leftForeWheel.get());
+        System.out.println("FOR STARBOARD = " + rightForeWheel.get());
+        System.out.println("AFT PORT = " + leftAftWheel.get());
+        System.out.println("AFT STARBOARD = " + rightAftWheel.get());
 //        System.out.println("throttle = " + Robot.oi.driveJoystick.getThrottle());
 
     }
     public void autoDrive() {
         if (!autoDriveDone) {
             if (Robot.plaidapult.displayDistance() < Robot.plaidapult.MAX_SHOOTING_DISTANCE) {
-                System.out.println("NOT MOVING");
+                //System.out.println("NOT MOVING");
                 stop();
             } else {
                 //robotDrive41.mecanumDrive_Polar(0.75,0,0);
@@ -122,14 +124,14 @@ public class DriveSystem extends Subsystem {
                 leftAftWheel.set(AUTO_DRIVE_SPEED);
                 rightForeWheel.set(AUTO_DRIVE_SPEED);
                 leftForeWheel.set(AUTO_DRIVE_SPEED);
-                System.out.println("MOVING FORWARD ======================= ");
+                //System.out.println("MOVING FORWARD ======================= ");
 
             }
         }
     }
     public void stop(){
         robotDrive41.mecanumDrive_Polar(0, 0, 0);
-        System.out.println("stopping mecanum");
+        //System.out.println("stopping mecanum");
     }
     public void displayDriveData(){
         SmartDashboard.putNumber("Port Fore Wheel", leftForeWheel.get());

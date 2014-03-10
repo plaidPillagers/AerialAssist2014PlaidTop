@@ -5,35 +5,35 @@
  */
 
 package org.usfirst.frc2538.AerialAssist2014.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2538.AerialAssist2014.Robot;
+
 /**
  *
  * @author Plaidtop
  */
-public class AutoPullInWinch extends Command{
-    public AutoPullInWinch() {
-        requires(Robot.plaidapult);
-    }
-
+public class StopWinch extends Command{
+    private boolean hasExecuted = false;
     protected void initialize() {
-        Robot.plaidapult.winchMaxLoadReached = false;
+        hasExecuted = false;
     }
 
     protected void execute() {
-        //System.out.println("Executing pull in winch");
-        Robot.plaidapult.pullIn();
+        Robot.plaidapult.stop();
+        hasExecuted = true;
     }
 
     protected boolean isFinished() {
-        return Robot.plaidapult.winchMaxLoadReached;
+        return hasExecuted;
     }
 
     protected void end() {
-        Robot.plaidapult.stop();
+       hasExecuted = true;
     }
 
     protected void interrupted() {
-        Robot.plaidapult.stop();
+       hasExecuted = true;
     }
+    
 }
