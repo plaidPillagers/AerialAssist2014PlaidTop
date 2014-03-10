@@ -79,8 +79,8 @@ public class RobotMap {
         driveSystemLeftForeWheel = new Talon(1, 3);
 	LiveWindow.addActuator("DriveSystem", "LeftForeWheel", (Talon) driveSystemLeftForeWheel);
         
-        driveSystemLeftAftWheel = new Victor(1, 4);
-	LiveWindow.addActuator("DriveSystem", "LeftAftWheel", (Victor) driveSystemLeftAftWheel);
+        driveSystemLeftAftWheel = new Talon(1, 4);//used to be a victor
+	LiveWindow.addActuator("DriveSystem", "LeftAftWheel", (Talon) driveSystemLeftAftWheel);
         
         driveSystemRightForeWheel = new Talon(1, 1);
 	LiveWindow.addActuator("DriveSystem", "RightForeWheel", (Talon) driveSystemRightForeWheel);
