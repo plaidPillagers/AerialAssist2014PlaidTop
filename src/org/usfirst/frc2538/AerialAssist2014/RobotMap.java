@@ -39,7 +39,8 @@ public class RobotMap {
     public static AnalogChannel rangeFinder;
     public static Compressor compressorCompressor;
     public static Relay dumyRelay;
-    public static SpeedController plaidapultDummyTalon;
+    public static SpeedController pincersPortWheel;
+    public static SpeedController pincersStarboardWheel;
     //public static DigitalInput pressureSwitch;//GET RID OF
     
     public static void init() {
@@ -98,9 +99,11 @@ public class RobotMap {
         compressorCompressor = new Compressor(4,6);
         LiveWindow.addSensor(null, 1, 10, rangeFinder);
         dumyRelay = new Relay(1,5);
+        pincersPortWheel = new Talon(1, 8);
+        LiveWindow.addActuator("Pincers", "PortWheel", (Talon) pincersPortWheel);
+        pincersStarboardWheel = new Talon (1,9);
+        LiveWindow.addActuator("Pincers", "StarbordWheel", (Talon) pincersStarboardWheel);
         
-        plaidapultDummyTalon = new Talon(1, 2);
-        LiveWindow.addActuator("Plaidapult", "dummyMotor", (Talon) plaidapultDummyTalon);
         //pressureSwitch = new DigitalInput(5);//GET RID OF
     }
 }
