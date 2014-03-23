@@ -15,6 +15,7 @@ public class SpinWheelsReverse extends Command {
 
     protected void initialize() {
         if(Robot.pincers.wheelState == -1){
+            System.out.println("wheels at zero!!!");
             Robot.pincers.wheelState = 0;
         }
         else{
@@ -27,7 +28,7 @@ public class SpinWheelsReverse extends Command {
     }
 
     protected boolean isFinished() {
-        if(Robot.pincers.wheelState == 1){
+        if(Robot.pincers.wheelState != 1){
             return true;
         }
         else{

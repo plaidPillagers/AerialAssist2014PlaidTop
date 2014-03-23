@@ -76,7 +76,7 @@ public class RobotMap {
         plaidapultWinchLimitSwitch = new DigitalInput(1, 3);// should be on 3
 	LiveWindow.addSensor("Plaidapult", "WinchLimitSwitch", plaidapultWinchLimitSwitch);
         
-        driveSystemRightAftWheel = new Talon(1, 8);// should be 2
+        driveSystemRightAftWheel = new Talon(1, 2);// should be 2
 	LiveWindow.addActuator("DriveSystem", "RightAftWheel", (Talon) driveSystemRightAftWheel);
         
         driveSystemLeftForeWheel = new Talon(1, 3);
