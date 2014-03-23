@@ -89,6 +89,9 @@ public class Plaidapult extends Subsystem {
             triggerActuator.set(DoubleSolenoid.Value.kReverse);
         }
     }
+    public void lockPlaidapult(){
+        triggerActuator.set(DoubleSolenoid.Value.kForward);
+    }
     public void winch45(){
         if(getTime() < TIME_45 && okPullIn()){
             winchMotor.set(WINCH_SPEED);

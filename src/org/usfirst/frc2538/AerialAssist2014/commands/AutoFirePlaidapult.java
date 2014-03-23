@@ -7,6 +7,7 @@ package org.usfirst.frc2538.AerialAssist2014.commands;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2538.AerialAssist2014.Robot;
+import org.usfirst.frc2538.AerialAssist2014.RobotMap;
 
 /**
  *
@@ -17,11 +18,12 @@ public class AutoFirePlaidapult extends Command {
    
     protected void initialize() {
         hasFinished = false;
-        Robot.plaidapult.triggerReleased = !Robot.plaidapult.triggerReleased;
+        //Robot.plaidapult.triggerReleased = !Robot.plaidapult.triggerReleased;
     }
 
     protected void execute() {
-        Robot.plaidapult.firePlaidapult();
+        //Robot.plaidapult.firePlaidapult();
+        RobotMap.plaidapultTriggerActuator.set(DoubleSolenoid.Value.kForward);
         System.out.println("**********Firing Plaidapult*********");
     }
 
