@@ -41,6 +41,7 @@ public class RobotMap {
     public static Relay dumyRelay;
     public static SpeedController pincersPortWheel;
     public static SpeedController pincersStarboardWheel;
+    public static SpeedController dummyTalon;
     //public static DigitalInput pressureSwitch;//GET RID OF
     
     public static void init() {
@@ -103,6 +104,8 @@ public class RobotMap {
         LiveWindow.addActuator("Pincers", "PortWheel", (Talon) pincersPortWheel);
         pincersStarboardWheel = new Talon (1,9);
         LiveWindow.addActuator("Pincers", "StarbordWheel", (Talon) pincersStarboardWheel);
+        dummyTalon = new Talon(1,6);
+        LiveWindow.addActuator("Plaidapult", "DummyTalon", (Talon) dummyTalon);
         
         //pressureSwitch = new DigitalInput(5);//GET RID OF
     }

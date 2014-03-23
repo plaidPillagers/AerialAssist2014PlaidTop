@@ -19,6 +19,7 @@ public class EaseWinch extends Command {
 
     protected void initialize() {
         Robot.plaidapult.resetTiming();
+        Robot.plaidapult.easedWinch = false;
     }
 
     protected void execute() {
@@ -27,15 +28,17 @@ public class EaseWinch extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return Robot.plaidapult.easedWinch;
     }
 
     protected void end() {
         Robot.plaidapult.stop();
+        Robot.plaidapult.easedWinch = true;
     }
 
     protected void interrupted() {
         Robot.plaidapult.stop();
+        Robot.plaidapult.easedWinch = true;
     }     
     
 }

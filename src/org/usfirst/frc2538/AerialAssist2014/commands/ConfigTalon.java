@@ -4,36 +4,36 @@
  */
 package org.usfirst.frc2538.AerialAssist2014.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc2538.AerialAssist2014.RobotMap;
+import org.usfirst.frc2538.AerialAssist2014.Robot;
 
 /**
  *
  * @author lenny
  */
-public class AutoFirePlaidapult extends Command{
-    boolean hasExecuted = false;
+public class ConfigTalon extends Command{
     
     protected void initialize() {
-        hasExecuted = false;
+        Robot.plaidapult.configured = false;
+        Robot.plaidapult.resetTiming();
     }
 
     protected void execute() {
-        RobotMap.plaidapultTriggerActuator.set(DoubleSolenoid.Value.kReverse);
-        hasExecuted = true;
+        if(Robot.plaidapult.configured == false){
+            Robot.plaidapult.configTalon();
+        }
     }
-
+    
     protected boolean isFinished() {
-        return hasExecuted;
+        return Robot.plaidapult.configured;
     }
 
     protected void end() {
-        hasExecuted = true;
+        Robot.plaidapult.configured = true;
     }
 
     protected void interrupted() {
-        hasExecuted = true;
+        Robot.plaidapult.configured = true;
     }
     
 }

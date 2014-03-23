@@ -45,7 +45,6 @@ public class Display {
         shooterJoystick = Robot.oi.shooterJoystick; 
         rangeFinder = RobotMap.rangeFinder;
         getZ = Robot.oi.driveJoystick;
-        trigger = Robot.plaidapult.displayTriggerState();
         //pressureSwitch = RobotMap.pressureSwitch;
     }
     
@@ -62,7 +61,6 @@ public class Display {
         boolean winchSwitch = winchLimitSwitch.get();
         double distance = rangeFinder.getAverageVoltage()/0.009766;
         double driveZ = getZ.getZ();
-        String triggerStatus = Robot.plaidapult.displayTriggerState();
         //boolean compressorSwitch = pressureSwitch.get();
         
         
@@ -78,7 +76,6 @@ public class Display {
         lines[2] = "Aft Switch: " + aftSwitch;
         //lines[4] = "Trigger" + triggerStatus;
         lines[3] = "PP switch: " + winchSwitch;
-        lines[4] = "TriggerState: " + triggerStatus;
         if(distance > Robot.plaidapult.MIN_SHOOTING_DISTANCE && distance < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
             lines[5] = "RF: *IN RANGE*";
         }

@@ -20,8 +20,8 @@ public class AutonomousCommand extends CommandGroup {
         if(hotGoalTracking){
             addSequential(new AutoPullInWinch()); // stops at a limit switch
             //System.out.println("************** Start driving ****************");
-            addSequential(new AutoFirePlaidapult(),0.2);
-            addSequential(new EaseWinch(), 5);
+            addSequential(new AutoLockPlaidapult(),0.2);
+            addSequential(new EaseWinch(), 5.25);
             addSequential(new AutoDrive(), 1.5);
             //System.out.println("************** Stop driving, start pincers ****************");
             addSequential(new AutoTogglePincers(),2);
@@ -34,13 +34,13 @@ public class AutonomousCommand extends CommandGroup {
             addSequential(new AutoPullInWinch());
             addSequential(new AutoDrive());
             addSequential(new AutoTogglePincers());
-            addSequential(new AutoFirePlaidapult());
+            addSequential(new AutoLockPlaidapult());
             addSequential(new PullInWinch());
             addSequential(new AutoMoveSwivelForward());
             addSequential(new AutoTogglePincers());
             addSequential(new AutoMoveSwivelAft());
             addSequential(new AutoTogglePincers());
-            addSequential(new AutoFirePlaidapult());
+            addSequential(new AutoLockPlaidapult());
         }
     }
 }

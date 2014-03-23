@@ -11,28 +11,28 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  *
  * @author lenny
  */
-public class CockPlaidapult extends Command{
-
+public class LockPlaidapult extends Command{
+    private boolean hasFinished = false;
+    
     protected void initialize() {
-        Robot.plaidapult.winchMaxLoadReached = false;
+        hasFinished = false;
     }
 
     protected void execute() {
-        Robot.plaidapult.pullIn();
         Robot.plaidapult.lockPlaidapult();
-        Robot.plaidapult.easeWinch();
+        hasFinished = true;
     }
 
     protected boolean isFinished() {
-        return Robot.plaidapult.winchMaxLoadReached;
+        return hasFinished;
     }
 
     protected void end() {
-        Robot.plaidapult.stop();
+        hasFinished = true;
     }
 
     protected void interrupted() {
-        Robot.plaidapult.stop();
+        System.out.println("Lock Plaidapult Interrupted");
     }
     
 }
