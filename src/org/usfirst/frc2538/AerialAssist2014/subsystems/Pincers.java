@@ -38,6 +38,7 @@ public class Pincers extends Subsystem {
     public boolean elevatorRaise = false;
     public boolean pincerSwitchReset = false;
     public static final double AUTO_SWIVEL_SPEED = .75;
+    public static final double SWIVEL_SPEED = 1;
     public boolean autoMoveSwivelDone = false;
     public int wheelState = 0;//0 = stop, 1 = forward, -1 reverse
     
@@ -94,6 +95,22 @@ public class Pincers extends Subsystem {
             } else {
                 swivelMotor.set(0);
             }
+        }
+    }
+    public void moveSwivelForward(){
+        if(okForward()){
+            swivelMotor.set(SWIVEL_SPEED);
+        }
+        else{
+            swivelMotor.set(0);
+        }
+    }
+    public void moveSwivelAft(){
+        if(okAft()){
+            swivelMotor.set(-SWIVEL_SPEED);
+        }
+        else{
+            swivelMotor.set(0);
         }
     }
 
@@ -157,9 +174,25 @@ public class Pincers extends Subsystem {
         armForward = true;
     }
     
+    public void openArm(){
+        armActuator.set(DoubleSolenoid.Value.kForward);
+        armForward = false;
+    }
+    
     public void spinWheels(){
         portWheel.set(wheelState);
         starboardWheel.set(wheelState);
+    }
+    public void forSwitchSpinWheels(){
+        if(!okForward()){
+            wheelState = 1;
+            portWheel.set(wheelState);
+            starboardWheel.set(wheelState);
+        }
+        else{
+            portWheel.set(wheelState);
+            starboardWheel.set(wheelState);
+        }
     }
     
     public void stopWheels(){

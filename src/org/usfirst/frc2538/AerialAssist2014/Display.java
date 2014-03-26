@@ -31,6 +31,7 @@ public class Display {
     static AnalogChannel rangeFinder;
     static Joystick getZ;
     static String trigger;
+    static int plaidapultStatus;
     
     public static void initializeDriverStation(){
         driverStation = DriverStationLCD.getInstance();
@@ -45,6 +46,7 @@ public class Display {
         shooterJoystick = Robot.oi.shooterJoystick; 
         rangeFinder = RobotMap.rangeFinder;
         getZ = Robot.oi.driveJoystick;
+        plaidapultStatus = Robot.plaidapult.plaidapultStatus;
         //pressureSwitch = RobotMap.pressureSwitch;
     }
     
@@ -61,6 +63,7 @@ public class Display {
         boolean winchSwitch = winchLimitSwitch.get();
         double distance = rangeFinder.getAverageVoltage()/0.009766;
         double driveZ = getZ.getZ();
+        int plaidapult = plaidapultStatus;
         //boolean compressorSwitch = pressureSwitch.get();
         
         
@@ -72,16 +75,32 @@ public class Display {
         //lines[1] = "[" + formatDouble(leftFore, 2) + "," + formatDouble(rightFore, 2) + "]";
         //lines[2] = "[" + formatDouble(leftAft, 2) + "," + formatDouble(rightAft, 2) + "]";
         //lines[1] = "SJ:[" + formatDouble(shooterY, 2) + "]";
-        lines[1] = "Fore Switch: " + foreSwitch;
-        lines[2] = "Aft Switch: " + aftSwitch;
-        //lines[4] = "Trigger" + triggerStatus;
-        lines[3] = "PP switch: " + winchSwitch;
+        lines[1] = "SJ[" + formatDouble(shooterY, 2) + "]";
         if(distance > Robot.plaidapult.MIN_SHOOTING_DISTANCE && distance < Robot.plaidapult.MAX_SHOOTING_DISTANCE){
-            lines[5] = "RF: *IN RANGE*";
+            lines[2] = "RF: *IN RANGE*";
         }
         else{
-            lines[5] = "RF: " + distance;
+            lines[2] = "RF: " + distance;
         }
+        
+        if(plaidapult == 0){
+            lines[3] = "Winch: FREE";
+        }
+        else if(plaidapult == 1){
+            lines[3] = "Winch: WINCHING";
+        }
+        else if(plaidapult == 2){
+            lines[3] = "Winch: PIN IN";
+        }
+        else if(plaidapult == 3){
+            lines[3] = "Winch: EASING";
+        }
+        else{
+            lines[3] = "Winch: **LOCKED**";
+        }
+        
+        lines[4] = "FS: " + foreSwitch + " AS: " + aftSwitch;
+        lines[5] = "PP: " + winchSwitch;
         //System.out.println("DISPLAY RANGE FINDER = " + rangeFinder);
         //lines[5] = "Aft Switch: " + aftSwitch; //should be here
         //lines[5] = "PP Switch: " + winchSwitch;

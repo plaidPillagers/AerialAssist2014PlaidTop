@@ -47,7 +47,8 @@ public class Plaidapult extends Subsystem {
     public final int FREE = 0;
     public final int WINCHING = 1;
     public final int PIN_IN = 2;
-    public final int READY = 3;
+    public final int EASING = 3;
+    public final int READY = 4;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -68,6 +69,7 @@ public class Plaidapult extends Subsystem {
     public void pullIn(){
         if(okPullIn()){
             winchMotor.set(WINCH_SPEED);
+            plaidapultStatus = WINCHING;
             //System.out.println("****PULLING IN WINCH******");
         }
         else{
@@ -81,12 +83,13 @@ public class Plaidapult extends Subsystem {
         //System.out.println("Winch Time = " + getTime());
         if(getTime() < EASE_WINCH_TIME){
             winchMotor.set(WINCH_EASE_SPEED);
-            plaidapultStatus = WINCHING;
+            plaidapultStatus = EASING;
             //System.out.println("-------------EASE WINCH----------");
         }
         else{
             winchMotor.set(0);
             easedWinch = true;
+            plaidapultStatus = READY;
             //System.out.println("--------------STOPPING WINCH=-----------");
         }
     }
