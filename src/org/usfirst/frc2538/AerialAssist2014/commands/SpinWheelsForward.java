@@ -27,7 +27,7 @@ public class SpinWheelsForward extends Command{
     }
 
     protected boolean isFinished() {
-        if(Robot.pincers.wheelState == -1){
+        if(Robot.pincers.wheelState != -1){
             return true;
         }
         else{
