@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import org.usfirst.frc2538.AerialAssist2014.RobotMap;
-import org.usfirst.frc2538.AerialAssist2014.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc2538.AerialAssist2014.Robot;

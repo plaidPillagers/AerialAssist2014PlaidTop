@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class FireSequence extends CommandGroup {
     public FireSequence(){
+        //addSequential (new SpitOutBall(), 1);
         addSequential (new OpenPincers(), .5);
         addSequential (new FirePlaidapult());
     }

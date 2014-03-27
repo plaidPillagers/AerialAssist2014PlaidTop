@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -11,8 +12,10 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  *
  * @author lenny
  */
-public class MoveSwivelFor extends Command {
-    private boolean hasExecuted = false;
+public class MoveSwivelFore extends Command {
+    public MoveSwivelFore(){
+        requires(Robot.pincers);
+    }
     
     protected void initialize() {
         Robot.pincers.swivelStop();
@@ -23,11 +26,16 @@ public class MoveSwivelFor extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return !Robot.pincers.okForward();
     }
 
     protected void end() {
         Robot.pincers.swivelStop();
+        if(!Robot.pincers.okForward()){
+            Robot.pincers.wheelState = 1;
+            Robot.pincers.spinWheels();
+        }
+        
     }
 
     protected void interrupted() {
