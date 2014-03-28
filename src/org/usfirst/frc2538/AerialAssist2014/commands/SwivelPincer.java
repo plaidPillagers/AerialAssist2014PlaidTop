@@ -27,6 +27,7 @@ public class  SwivelPincer extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        System.out.println("well, this isn't good");
         //System.out.println("Moving pincers....");
         //Robot.pincers.moveSwivel();
     }

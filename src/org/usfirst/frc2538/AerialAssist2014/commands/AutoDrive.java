@@ -20,6 +20,7 @@ public class AutoDrive extends Command{
 
     protected void execute() {
         Robot.driveSystem.autoDrive();
+        System.out.println("DRIVING FORWARD");
     }
 
     protected boolean isFinished() {

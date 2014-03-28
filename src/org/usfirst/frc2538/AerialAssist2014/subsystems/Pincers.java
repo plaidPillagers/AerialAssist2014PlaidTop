@@ -100,17 +100,21 @@ public class Pincers extends Subsystem {
     public void moveSwivelForward(){
         if(okForward()){
             swivelMotor.set(SWIVEL_SPEED);
+            System.out.println("moving swivel forward");
         }
         else{
             swivelMotor.set(0);
+            System.out.println("in forward, setting to zero");
         }
     }
     public void moveSwivelAft(){
         if(okAft()){
             swivelMotor.set(-SWIVEL_SPEED);
+            System.out.println("moving swivel aft");
         }
         else{
             swivelMotor.set(0);
+            System.out.println("in reverse, setting to zero");
         }
     }
 
