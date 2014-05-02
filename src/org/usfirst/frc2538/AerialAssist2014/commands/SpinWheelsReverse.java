@@ -12,35 +12,34 @@ import org.usfirst.frc2538.AerialAssist2014.Robot;
  * @author lenny
  */
 public class SpinWheelsReverse extends Command {
+    public SpinWheelsReverse(){
+        requires(Robot.pincerWheels);
+    }
 
     protected void initialize() {
-        if(Robot.pincers.wheelState == -1){
+        System.out.println("spin wheels reverse initialiszed");
+        if(Robot.pincerWheels.wheelState == -1){
             System.out.println("wheels at zero!!!");
-            Robot.pincers.wheelState = 0;
+            Robot.pincerWheels.wheelState = 0;
         }
         else{
-            Robot.pincers.wheelState = -1;
+            Robot.pincerWheels.wheelState = -1;
         }
     }
 
     protected void execute() {
-        Robot.pincers.spinWheels();
+        Robot.pincerWheels.spinWheels();
     }
 
     protected boolean isFinished() {
-        if(Robot.pincers.wheelState != 1){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return false;
     }
-
     protected void end() {
         
     }
 
     protected void interrupted() {
+        System.out.println("wheels reverse initiallized");
         
     }
     

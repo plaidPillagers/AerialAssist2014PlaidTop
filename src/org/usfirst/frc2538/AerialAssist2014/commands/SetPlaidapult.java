@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SetPlaidapult extends CommandGroup{
     public SetPlaidapult(){
         addSequential (new PullInWinch());
-        addSequential (new LockPlaidapult());
-        addSequential (new EaseWinch());
+        addSequential (new HalfSecondDelay(),.5);
+        addSequential (new AutoLockPlaidapult(),.02);
+        addSequential (new HalfSecondDelay(), .25);
+        addSequential (new EaseWinch(),5.5);
     }
     
 }

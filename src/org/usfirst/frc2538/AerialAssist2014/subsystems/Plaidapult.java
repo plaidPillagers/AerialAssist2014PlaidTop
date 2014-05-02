@@ -30,7 +30,7 @@ public class Plaidapult extends Subsystem {
     SpeedController dummyTalon = RobotMap.dummyTalon;
     private final double WINCH_SPEED = .99;
     private final double WINCH_EASE_SPEED = -0.75;
-    private final long EASE_WINCH_TIME = 5250;
+    private final long EASE_WINCH_TIME = 5500;
     public final long THREE_SECOND_DELAY = 3000;
     public boolean winchMaxLoadReached = true;
     public boolean easedWinch = false;

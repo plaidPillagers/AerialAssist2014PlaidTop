@@ -32,8 +32,8 @@ public class MoveSwivelFore extends Command {
     protected void end() {
         Robot.pincers.swivelStop();
         if(!Robot.pincers.okForward()){
-            Robot.pincers.wheelState = 1;
-            Robot.pincers.spinWheels();
+            Robot.pincerWheels.wheelState = 1;
+            Robot.pincerWheels.spinWheels();
         }
         
     }

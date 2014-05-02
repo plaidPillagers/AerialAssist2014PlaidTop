@@ -31,7 +31,7 @@ public class Camera extends Subsystem {
     // here. Call these from Commands.
     public Camera(){
         super();
-        camera = AxisCamera.getInstance();
+        ///camera = AxisCamera.getInstance();
         
     }
     

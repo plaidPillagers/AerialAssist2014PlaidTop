@@ -100,7 +100,7 @@ public class RobotMap {
         compressorCompressor = new Compressor(4,6);
         LiveWindow.addSensor(null, 1, 10, rangeFinder);
         dumyRelay = new Relay(1,5);
-        pincersPortWheel = new Victor (1, 8);
+        pincersPortWheel = new Talon (1, 8);
         LiveWindow.addActuator("Pincers", "PortWheel", (Victor) pincersPortWheel);
         pincersStarboardWheel = new Victor (1,9);
         LiveWindow.addActuator("Pincers", "StarbordWheel", (Victor) pincersStarboardWheel);
